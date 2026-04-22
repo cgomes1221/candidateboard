@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gomes Godin | Talent Bulletin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:       #C9A84C;   /* primary CTA gold */
+  --green-dk:    #A8882E;   /* hover gold */
+  --green-lt:    #fdf6e3;   /* light gold tint */
+  --navy:        #111111;   /* headings, nav bg — black */
+  --slate:       #1a1a1a;   /* body text */
+  --slate-mid:   #333333;   /* secondary text */
+  --muted:       #64748b;   /* muted text */
+  --border:      #e2e8f0;   /* borders */
+  --bg:          #ffffff;   /* page bg */
+  --bg-off:      #f8fafc;   /* subtle bg */
+  --bg-section:  #f1f5f9;   /* section bg */
+  --radius:      12px;
+  --radius-lg:   20px;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:   0 20px 48px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.05);
+  --transition:  0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--slate);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════
+   NAV — matches GomesGodin.com
+══════════════════════════════ */
+.site-nav {
+  background: var(--navy);
+  padding: 0 5%;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: #fff;
+  font-weight: 700; font-size: 17px;
+  letter-spacing: -0.3px;
+}
+.nav-logo span { color: var(--green); }
+
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-link {
+  color: rgba(255,255,255,0.65); font-size: 14px;
+  font-weight: 500; text-decoration: none;
+  transition: color var(--transition);
+}
+.nav-link:hover { color: #fff; }
+
+.nav-cta {
+  background: var(--green); color: #fff;
+  font-size: 13px; font-weight: 700;
+  padding: 9px 20px; border-radius: 8px;
+  text-decoration: none;
+  transition: background var(--transition), transform var(--transition);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-cta:hover { background: var(--green-dk); transform: translateY(-1px); }
+
+/* ══════════════════════════════
+   HERO SECTION
+══════════════════════════════ */
+.hero {
+  background: var(--navy);
+  padding: 88px 5% 72px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle dot-grid pattern like GomesGodin.com */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: rgba(255,255,255,0.07);
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: var(--green);
+  font-size: 12px; font-weight: 600;
+  padding: 6px 16px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.5s ease both;
+}
+.hero-badge i { font-size: 9px; }
+
+.hero h1 {
+  font-size: 50px; font-weight: 800;
+  color: #fff; line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  animation: fadeUp 0.5s 0.08s ease both;
+}
+.hero h1 .accent { color: var(--green); }
+
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-weight: 400; max-width: 520px;
+  margin: 0 auto 48px; line-height: 1.7;
+  animation: fadeUp 0.5s 0.16s ease both;
+}
+
+/* ── Search ── */
+.search-wrap {
+  max-width: 600px; margin: 0 auto 32px;
+  position: relative;
+  animation: fadeUp 0.5s 0.24s ease both;
+}
+.search-wrap i {
+  position: absolute; left: 18px; top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.25); font-size: 14px;
+  pointer-events: none;
+}
+.search-input {
+  width: 100%; padding: 15px 18px 15px 48px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  font-size: 15px; color: #fff;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all var(--transition);
+}
+.search-input::placeholder { color: rgba(255,255,255,0.25); }
+.search-input:focus {
+  border-color: rgba(201,168,76,0.5);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+}
+
+/* ── Filters ── */
+.filter-row {
+  display: flex; gap: 8px; justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.5s 0.3s ease both;
+}
+.filter-btn {
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all var(--transition);
+  letter-spacing: -0.1px;
+}
+.filter-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.9);
+}
+.filter-btn.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Stats bar ── */
+.hero-stats {
+  display: flex; justify-content: center;
+  gap: 0; margin-top: 56px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 40px;
+  animation: fadeUp 0.5s 0.36s ease both;
+}
+.hs-item { padding: 0 44px; text-align: center; }
+.hs-item + .hs-item { border-left: 1px solid rgba(255,255,255,0.07); }
+.hs-num {
+  display: block;
+  font-size: 30px; font-weight: 800; color: var(--green);
+  letter-spacing: -1px; line-height: 1;
+  margin-bottom: 6px;
+}
+.hs-label {
+  font-size: 11px; color: rgba(255,255,255,0.3);
+  text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;
+}
+
+/* ══════════════════════════════
+   MAIN GRID
+══════════════════════════════ */
+.main {
+  flex: 1; max-width: 1280px; width: 100%;
+  margin: 0 auto; padding: 56px 5%;
+}
+
+.result-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px;
+}
+.result-count {
+  font-size: 13px; font-weight: 600;
+  color: var(--muted); letter-spacing: 0.3px;
+}
+.sort-btn {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: color var(--transition);
+}
+.sort-btn:hover { color: var(--slate); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+/* ══════════════════════════════
+   CANDIDATE CARD
+══════════════════════════════ */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  transition: all var(--transition);
+  animation: fadeUp 0.5s ease both;
+  position: relative; overflow: hidden;
+}
+.card:nth-child(1) { animation-delay: 0s; }
+.card:nth-child(2) { animation-delay: 0.06s; }
+.card:nth-child(3) { animation-delay: 0.12s; }
+.card:nth-child(4) { animation-delay: 0.18s; }
+.card:nth-child(5) { animation-delay: 0.24s; }
+.card:nth-child(6) { animation-delay: 0.3s; }
+
+.card:hover {
+  border-color: var(--green);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* Green top accent on hover */
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--green);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--transition);
+}
+.card:hover::before { transform: scaleX(1); }
+
+/* Card header */
+.card-head { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 22px; }
+.card-avatar {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: var(--green);
+  flex-shrink: 0; letter-spacing: -0.5px;
+}
+.card-info { flex: 1; min-width: 0; }
+.cat-pill {
+  display: inline-block;
+  background: var(--green-lt); color: var(--green-dk);
+  font-size: 10px; font-weight: 700;
+  padding: 3px 10px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.card-role {
+  font-size: 17px; font-weight: 700;
+  color: var(--navy); line-height: 1.2;
+  margin-bottom: 4px; letter-spacing: -0.3px;
+}
+.card-loc {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 12px; color: var(--muted); font-weight: 500;
+}
+.card-loc i { font-size: 9px; color: var(--green); }
+
+/* Stats strip */
+.card-stats {
+  display: flex; background: var(--bg-off);
+  border-radius: 10px; margin-bottom: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.cs { flex: 1; padding: 12px 0; text-align: center; }
+.cs + .cs { border-left: 1px solid var(--border); }
+.cs-val {
+  display: block; font-size: 16px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.5px; line-height: 1;
+  margin-bottom: 3px;
+}
+.cs-label {
+  font-size: 9px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;
+}
+
+/* Top win highlight */
+.card-highlight {
+  background: var(--bg-off);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 14px;
+  font-size: 13px; color: var(--slate-mid);
+  line-height: 1.5; margin-bottom: 18px;
+}
+
+/* Tags */
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.tag {
+  font-size: 11px; font-weight: 600;
+  padding: 5px 11px; border-radius: 6px;
+  background: var(--bg-section); color: var(--muted);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+}
+.card:hover .tag { border-color: #c6f6d5; background: var(--green-lt); color: var(--green-dk); }
+
+/* Card footer */
+.card-foot {
+  margin-top: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 18px; border-top: 1px solid var(--border);
+}
+.ref-id { font-size: 10px; font-weight: 700; color: #cbd5e1; letter-spacing: 2px; text-transform: uppercase; }
+.view-link {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; color: var(--green-dk);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  transition: gap var(--transition);
+}
+.view-link i { font-size: 10px; transition: transform var(--transition); }
+.card:hover .view-link i { transform: translateX(3px); }
+
+/* ── Empty ── */
+.empty {
+  display: none; text-align: center; padding: 80px 0;
+}
+.empty i { font-size: 40px; color: var(--border); margin-bottom: 16px; display: block; }
+.empty p { color: var(--muted); font-size: 16px; margin-bottom: 12px; }
+.empty button {
+  color: var(--green-dk); font-size: 14px; font-weight: 600;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Inter', sans-serif; text-decoration: underline;
+}
+
+/* ══════════════════════════════
+   FOOTER — matches GomesGodin.com
+══════════════════════════════ */
+.site-footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 40px 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+}
+.foot-brand { display: flex; flex-direction: column; gap: 6px; }
+.foot-logo { font-size: 16px; font-weight: 700; color: #fff; }
+.foot-logo span { color: var(--green); }
+.foot-tagline { font-size: 12px; color: rgba(255,255,255,0.3); }
+.foot-right { display: flex; align-items: center; gap: 20px; }
+.foot-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+.foot-icons { display: flex; gap: 14px; }
+.foot-icon {
+  color: rgba(255,255,255,0.3); font-size: 16px;
+  cursor: pointer; transition: color var(--transition);
+}
+.foot-icon:hover { color: var(--green); }
+
+/* ══════════════════════════════
+   DRAWER
+══════════════════════════════ */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15,23,42,0.5);
+  backdrop-filter: blur(4px); z-index: 200;
+}
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 520px; max-width: 100vw;
+  background: var(--bg); z-index: 201;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+  border-left: 1px solid var(--border);
+  box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+}
+.drawer.open { transform: translateX(0); }
+
+.drawer-top {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.drawer-label {
+  font-size: 11px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.drawer-close {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--bg-off); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 13px;
+  transition: all var(--transition);
+}
+.drawer-close:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+.drawer-body {
+  flex: 1; overflow-y: auto; padding: 32px 28px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.drawer-body::-webkit-scrollbar { width: 4px; }
+.drawer-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* Drawer inner */
+.d-avatar {
+  width: 72px; height: 72px; border-radius: 16px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 800; color: var(--green);
+  margin-bottom: 20px; letter-spacing: -1px;
+}
+.d-cat {
+  display: inline-block;
+  background: var(--green-lt); color: var(--green-dk);
+  font-size: 10px; font-weight: 700;
+  padding: 4px 12px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.d-role {
+  font-size: 28px; font-weight: 800; color: var(--navy);
+  line-height: 1.15; letter-spacing: -0.8px;
+  margin-bottom: 10px;
+}
+.d-meta {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  font-size: 13px; color: var(--muted); font-weight: 500;
+  margin-bottom: 28px;
+}
+.d-meta-item { display: flex; align-items: center; gap: 5px; }
+.d-meta-item i { font-size: 10px; color: var(--green); }
+
+/* Section */
+.d-sec { margin-bottom: 28px; }
+.d-sec-title {
+  font-size: 11px; font-weight: 700; color: var(--navy);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.d-sec-title::before {
+  content: ''; width: 3px; height: 14px;
+  background: var(--green); border-radius: 2px;
+}
+
+.d-bio {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 18px;
+  font-size: 15px; color: var(--slate-mid);
+  line-height: 1.75; font-style: italic;
+}
+
+.d-win {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 0; border-bottom: 1px solid var(--bg-section);
+}
+.d-win:last-child { border-bottom: none; }
+.check-circle {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--green-lt); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.check-circle i { font-size: 9px; color: var(--green-dk); font-weight: 700; }
+.d-win-text { font-size: 14px; color: var(--slate-mid); line-height: 1.55; }
+
+.d-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.d-tag {
+  font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 8px;
+  background: var(--bg-section); color: var(--slate);
+  border: 1px solid var(--border);
+}
+
+.d-edu {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-off); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px;
+  font-size: 14px; color: var(--slate);
+}
+.d-edu i { color: var(--green); font-size: 15px; }
+
+/* CTA */
+.d-cta { padding-top: 8px; }
+.cta-btn {
+  width: 100%; padding: 16px 24px;
+  background: var(--green); color: #fff;
+  border: none; border-radius: var(--radius);
+  font-size: 14px; font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer; letter-spacing: 0.2px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all var(--transition);
+}
+.cta-btn:hover {
+  background: var(--green-dk);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+}
+.cta-btn:active { transform: scale(0.98); }
+.cta-note {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 10px; font-size: 12px; color: var(--muted);
+}
+.cta-note i { font-size: 10px; color: var(--green); }
+
+/* ══════════════════════════════
+   TOAST
+══════════════════════════════ */
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--navy); color: #fff;
+  padding: 14px 22px; border-radius: var(--radius);
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0; pointer-events: none;
+  transition: all 0.3s; z-index: 300;
+  border: 1px solid rgba(201,168,76,0.2);
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast i { color: var(--green); font-size: 14px; }
+
+/* ══════════════════════════════
+   ANIMATION
+══════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 900px) {
+  .hero { padding: 60px 5% 52px; }
+  .hero h1 { font-size: 36px; }
+  .main { padding: 36px 5%; }
+  .grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 0; padding-top: 32px; margin-top: 40px; }
+  .hs-item { padding: 0 28px; }
+  .site-footer { flex-direction: column; gap: 24px; }
+  .drawer { width: 100%; }
+}
+@media (max-width: 540px) {
+  .nav-link { display: none; }
+  .hero h1 { font-size: 30px; }
+  .hero-stats { display: none; }
+  .card-stats { display: none; }
+}
+
+/* ── Drawer Tabs ── */
+.d-tabs {
+  display: flex; gap: 4px;
+  background: var(--bg-section);
+  border-radius: 10px; padding: 4px;
+  margin-bottom: 28px;
+}
+.d-tab {
+  flex: 1; padding: 9px 12px;
+  background: transparent; border: none;
+  border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--muted); cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all var(--transition);
+}
+.d-tab:hover { color: var(--slate); }
+.d-tab.active {
+  background: #fff; color: var(--navy);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ── Full Summary ── */
+.fs-prose p {
+  font-size: 14px; color: var(--slate-mid);
+  line-height: 1.75; margin-bottom: 14px;
+}
+.fs-prose p:last-child { margin-bottom: 0; }
+
+.fs-grid { display: flex; flex-direction: column; gap: 8px; }
+.fs-comp {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--slate-mid); line-height: 1.5;
+}
+.fs-comp i { font-size: 9px; color: var(--green); margin-top: 4px; flex-shrink: 0; }
+
+.fs-exp {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--bg-section);
+}
+.fs-exp:last-child { border-bottom: none; }
+.fs-exp-head {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px; margin-bottom: 3px;
+}
+.fs-exp-title { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.fs-exp-period {
+  font-size: 11px; font-weight: 600; color: var(--green);
+  background: var(--green-lt); padding: 2px 10px;
+  border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+}
+.fs-exp-company { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 8px; }
+.fs-exp-detail { font-size: 13px; color: var(--slate-mid); line-height: 1.6; }
+
+.no-summary {
+  text-align: center; padding: 60px 0; color: var(--muted);
+}
+.no-summary i { font-size: 32px; color: var(--border); display: block; margin-bottom: 14px; }
+.no-summary p { font-size: 14px; }
+
+/* ══════════════════════════════
+   INQUIRY MODAL
+══════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15,23,42,0.6);
+  backdrop-filter: blur(4px); z-index: 300;
+}
+.modal {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -48%) scale(0.97);
+  width: 520px; max-width: calc(100vw - 32px);
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.2);
+  z-index: 301;
+  opacity: 0; pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+.modal.open {
+  opacity: 1; pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 24px 24px 0;
+}
+.modal-title { font-size: 18px; font-weight: 800; color: var(--navy); letter-spacing: -0.4px; }
+.modal-sub { font-size: 12px; color: var(--green); font-weight: 600; margin-top: 3px; }
+.modal-close {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--bg-section); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 13px; flex-shrink: 0;
+  transition: all var(--transition);
+}
+.modal-close:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+.modal-body { padding: 16px 24px 24px; }
+.modal-intro { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.form-label { font-size: 12px; font-weight: 700; color: var(--navy); }
+.req { color: var(--green); }
+.optional { color: var(--muted); font-weight: 500; }
+.form-input {
+  padding: 11px 14px;
+  background: var(--bg-off);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px; color: var(--slate);
+  font-family: 'Inter', sans-serif;
+  outline: none; width: 100%;
+  transition: all var(--transition);
+}
+.form-input:focus {
+  border-color: var(--green);
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--green-lt);
+}
+.form-input::placeholder { color: #b0bac6; }
+.form-textarea { resize: vertical; min-height: 90px; }
+.form-error {
+  font-size: 13px; color: #dc2626;
+  font-weight: 500; margin-bottom: 12px;
+  min-height: 18px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="site-nav">
+  <a class="nav-logo" href="https://cgomes1221.github.io/GomesGodin.com/">
+    Gomes<span>Godin</span>
+  </a>
+  <div class="nav-right">
+    <a class="nav-cta" href="https://cgomes1221.github.io/GomesGodin.com/">
+      <i class="fas fa-handshake"></i> Partner With Us
+    </a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-badge">
+    <i class="fas fa-bolt"></i>
+    Specialty Talent
+  </div>
+  <h1>Elite Talent,<br><span class="accent">Ready Now.</span></h1>
+  <p class="hero-sub">Direct access to pre-vetted executives and specialists your competitors haven't found yet.</p>
+
+  <div class="search-wrap">
+    <i class="fas fa-search"></i>
+    <input class="search-input" type="text" id="searchInput" placeholder="Search by role, expertise, or location…">
+  </div>
+
+  <div class="filter-row" id="filterRow"></div>
+
+  <div class="hero-stats">
+    <div class="hs-item">
+      <span class="hs-num" id="totalCount">0</span>
+      <span class="hs-label">Available Now</span>
+    </div>
+    <div class="hs-item">
+      <span class="hs-num">100%</span>
+      <span class="hs-label">Pre-Vetted</span>
+    </div>
+    <div class="hs-item">
+      <span class="hs-num">48h</span>
+      <span class="hs-label">Avg. Response</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+  <div class="result-bar">
+    <span class="result-count" id="resultCount"></span>
+    <span class="sort-btn">Recent Arrivals&nbsp;<i class="fas fa-chevron-down" style="font-size:9px;"></i></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="emptyState">
+    <i class="fas fa-search"></i>
+    <p>No candidates match those filters.</p>
+    <button onclick="resetFilters()">Reset search</button>
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="foot-brand">
+    <div class="foot-logo">Gomes<span>Godin</span></div>
+    <div class="foot-tagline">Monetize Idle Candidates</div>
+  </div>
+  <div class="foot-right">
+    <span class="foot-copy">© 2025 Gomes Godin. All rights reserved.</span>
+    <div class="foot-icons">
+      <a href="https://www.linkedin.com/company/gomesgodin/" target="_blank">
+        <i class="fab fa-linkedin foot-icon"></i>
+      </a>
+      <a href="mailto:tgodin@gomesgodin.com">
+        <i class="fas fa-envelope foot-icon"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ DRAWER ══ -->
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-top">
+    <span class="drawer-label">Candidate Profile</span>
+    <button class="drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg">Inquiry sent — we'll be in touch shortly.</span>
+</div>
+
+<!-- ══ INQUIRY MODAL ══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <div class="modal-head">
+    <div>
+      <div class="modal-title">Request Interview Details</div>
+      <div class="modal-sub" id="modalSub"></div>
+    </div>
+    <button class="modal-close" type="button" onclick="closeModal()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="modal-body">
+    <p class="modal-intro">Tell us a bit about yourself and we'll be in touch within one business day.</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Your Name <span class="req">*</span></label>
+        <input class="form-input" type="text" id="inquiryName" placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company <span class="req">*</span></label>
+        <input class="form-input" type="text" id="inquiryCompany" placeholder="Acme Corp">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Your Email <span class="req">*</span></label>
+      <input class="form-input" type="email" id="inquiryEmail" placeholder="jane@acmecorp.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Message <span class="optional">(optional)</span></label>
+      <textarea class="form-input form-textarea" id="inquiryMessage" placeholder="Any specific questions or availability…"></textarea>
+    </div>
+    <div class="form-error" id="formError"></div>
+    <button class="cta-btn" type="button" id="submitBtn" onclick="submitInquiry()">
+      <i class="fas fa-paper-plane"></i> Send Inquiry
+    </button>
+    <p class="cta-note" style="margin-top:12px;">
+      <i class="fas fa-lock" style="font-size:10px;color:var(--green);"></i>
+      Your info is only shared with Gomes Godin.
+    </p>
+  </div>
+</div>
+
+<script>
+const candidates = [
+  {
+    id: 4, refId: "C-3301",
+    role: "Business Development Executive",
+    category: "Sales & Strategy",
+    location: "Dallas, TX",
+    experience: "15+",
+    experienceFull: "15+ Years",
+    initials: "BD",
+    education: "BBA, Computer Science | MBA (in progress) | NVIDIA AI Certified",
+    expertise: ["AI & Digital Transformation", "Enterprise Sales", "Telecom & Technology"],
+    highlights: [
+      "Closed a $300M fully outsourced exclusive contract and secured the largest IoT sale in company history at $280M.",
+      "Delivered up to 45% YoY revenue growth closing complex deals from $100K to $1B across Fortune 500 clients.",
+      "Scaled global teams of 25+ and expanded into 10+ international markets across telecom, defense, healthcare, and manufacturing."
+    ],
+    bio: "Values-driven enterprise sales executive with 15+ years closing high-value deals in AI, cloud, cybersecurity, and digital transformation — known for C-suite trust and disciplined, long-term growth leadership.",
+    fullSummary: {
+      summary: "Business development and sales executive with 15+ years of experience driving enterprise growth and AI-enabled digital transformation across Fortune 500 and mid-market organizations. Proven track record closing complex, high-value deals ranging from $100K to $1B, delivering up to 45% year-over-year revenue growth, and securing multi-year enterprise agreements exceeding $500M. Experienced in aligning emerging technologies—including AI and LLMs, cloud, cybersecurity, IoT, blockchain, and advanced infrastructure—to measurable business outcomes across telecom, technology, utilities, healthcare, defense, and manufacturing sectors.\n\nKnown for a values-driven, consistently professional approach grounded in integrity, constructive dialogue, and trust-based C-suite relationships. Recognized for solution-oriented selling, global go-to-market leadership, and disciplined execution, with success scaling teams of 25+, expanding into 10+ international markets, and leading cross-functional initiatives that accelerate sustainable, long-term growth.",
+      competencies: [
+        "AI Generation & Prediction | LLM Applications | NVIDIA Infrastructure & Operations",
+        "Data Center Infrastructure | Hybrid Cloud | High-Performance Compute (HPC)",
+        "Energy Infrastructure (Construction, Storage & Transmission)",
+        "Emerging Technology GTM Strategy | Digital Transformation & Modernization",
+        "Enterprise Sales | Complex Deal Structuring | Solution-Based Selling",
+        "Global Business Development | Market Expansion | New Market Entry",
+        "Strategic Partnerships | Channel Ecosystems | Alliance Leadership",
+        "Cybersecurity Architecture | Risk Management | Zero Trust / SASE",
+        "Cloud & Edge Computing (SaaS, 5G, IoT)",
+        "Executive Stakeholder Engagement | C-Suite Relationship Management",
+        "Sales Forecasting | P&L Ownership | Revenue Growth Leadership",
+        "Cross-Functional Leadership | Talent Development | Team Scaling"
+      ],
+      awards: [
+        "Closed a $300M fully outsourced exclusive contract (SLED).",
+        "Delivered multimillion-dollar technology solutions to Fortune 500 clients.",
+        "Secured the largest IoT sale in company history ($280M).",
+        "7x recipient of the President's Volunteer Service Award (2015–2023).",
+        "Award-winning enterprise solutions spanning deals from $100K to $1B.",
+        "Achievers Club & President's Club inducted across multiple years and companies."
+      ],
+      experience: [
+        {
+          title: "Managing Partner — Global Business Development",
+          company: "Telecommunications Company",
+          period: "2021 – 2026",
+          details: "Drive global business development initiatives with a focus on digital transformation across diverse industries including Channel, SI, Public, Fed/Gov, HE, Utilities, Logistics, Finance, Defense, Pharma/Healthcare, Manufacturing, Retail, Sports, and Entertainment. Specialize in technology consulting, leveraging expertise in AI Generation & Prediction, NVIDIA Infrastructure & Operations, SaaS, Blockchain, META, AR/VR, SASE and Cyber Security to enhance client capabilities and drive innovation."
+        },
+        {
+          title: "Director of Sales – Vertical Markets",
+          company: "Telecommunications Company",
+          period: "2015 – 2021",
+          details: "Oversaw strategic planning and execution tailored to specific industry sectors. Amplified annual revenue through expansion of product portfolios encompassing 5G, IoT, MEC, NEC, Cloud/CSP, Hosting, Security, Big Data/Analytics, and Applications, with a primary emphasis on Digital Transformation pre/post CV19."
+        },
+        {
+          title: "Regional Sales / Technical Sales Manager",
+          company: "Telecommunications Company",
+          period: "2002 – 2015",
+          details: "Spearheaded management of Signature Client Group, overseeing Sales and Technical Sales Teams, driving annual sales growth through diversified portfolio expansion. IDC Certified 2011–2019. Participated in Hi-Po (High-Potential Leaders) Program 2010–2019."
+        }
+      ],
+      certifications: [
+        "NVIDIA AI Infrastructure & Operations Certification – Coursera",
+        "AI Generation & Prediction Models – Coursera",
+        "Certified Blockchain Expert & Metaverse Expert – Blockchain Council",
+        "Certified Network Professional (Cradlepoint University)",
+        "InfraGard Cybersecurity Member with FBI Clearance: 2017–2025",
+        "Cradlepoint, Microsoft, IBM, Fortinet, Proofpoint (available upon request)"
+      ]
+    }
+  },
+  {
+    id: 5, refId: "C-5517",
+    role: "Sales Director",
+    category: "Sales & Strategy",
+    location: "St. Charles, IL",
+    experience: "25+",
+    experienceFull: "25+ Years",
+    initials: "SD",
+    education: "B.A., Business Administration",
+    expertise: ["Specialty Materials", "Commercial Leadership", "P&L Management"],
+    highlights: [
+      "Led a $250M commercial organization as Sales Director, managing 6 Sales Managers and 35 staff — exceeding plan in 2024 and first half of 2025.",
+      "Delivered $4.3M in new business acquisitions in a single year as Regional Sales Manager, recognized as the top regional team globally.",
+      "Oversaw a $600M product line as Product Portfolio Manager, generating $10M in additional contribution margin and reducing production costs by $4M."
+    ],
+    bio: "Results-driven commercial leader with 25+ years in specialty chemicals and materials — known for transforming underperforming teams, driving double-digit growth, and building accountability-first sales cultures across global organizations.",
+    fullSummary: {
+      summary: "Results-driven sales and management professional with a passion for building accountability and fostering a results-based culture within sales and management teams. Proven track record of transforming underperforming areas of a business into high-functioning areas through effective leadership. Skilled in identifying and capitalizing on growth opportunities, consistently delivering exceptional sales and revenue outcomes. Adept at motivating and inspiring teams to exceed targets and achieve peak performance levels.",
+      competencies: [
+        "Sales Strategy & Commercial Vision",
+        "P&L Ownership & Revenue Growth",
+        "Team Leadership & Performance Management",
+        "Contract Negotiation & Pricing Strategy",
+        "Market Development & Vertical Sales Structures",
+        "Change Management & Organizational Transformation",
+        "Pipeline Management & Data-Driven Coaching",
+        "Global Product & Portfolio Management",
+        "Customer-Centric Selling",
+        "Presentations & Public Speaking"
+      ],
+      awards: [
+        "Exceeded 2024 business plan and first half of 2025 after restructuring commercial organization.",
+        "Recognized as the #1 regional sales team globally in 2021.",
+        "2021 Sales Manager Chairman's Club runner-up — awarded to one Sales Manager globally.",
+        "Promoted to the Global Leadership Team within the first 4 months as Global Product Manager.",
+        "Delivered $4.3M in new business acquisitions in a single year.",
+        "Generated $10M in additional contribution margin through comprehensive product strategy."
+      ],
+      experience: [
+        {
+          title: "Sales Director",
+          company: "Specialty Materials Company",
+          period: "2023 – Present",
+          details: "Promoted to lead the Commercial Organization for the Specialty Engineered Materials division, overseeing a $250M business. Manages 6 Sales Managers and 35 sales and customer service staff. Spearheaded major change management, restructuring the team into a market-based vertical sales structure that accelerated growth and exceeded plan in 2024 and H1 2025."
+        },
+        {
+          title: "Regional Sales Manager",
+          company: "Specialty Materials Company",
+          period: "2023 – Present",
+          details: "Accountable for leading, coaching, and growing 6 Territory Managers across a $50M revenue region. Achieved YoY growth with $4.3M in new business acquisitions in 2021. Negotiated a significant pricing increase at the largest account during contract renewal, surpassing previous gross margins without losing market share. Recognized as the top regional team globally in 2021."
+        },
+        {
+          title: "Global Business Manager",
+          company: "Specialty Materials Company",
+          period: "2016 – 2018",
+          details: "Business leader overseeing a $40M P&L, responsible for onboarding and managing an acquisition with direct ownership of Sales, Marketing, Manufacturing, and R&D. Achieved 37% growth in the specialty segment in 2017, increasing revenue by $4M. Seamlessly integrated the acquired customer base within 60 days, maintaining all sales."
+        },
+        {
+          title: "Global Product Manager",
+          company: "Specialty Materials Company",
+          period: "2013 – 2016",
+          details: "Led 4 Regional Product Managers overseeing a $230M global business. Successfully negotiated and closed a contract with the business unit's largest customer representing 14% of global business. Promoted to the Global Leadership Team within the first 4 months."
+        },
+        {
+          title: "Product Portfolio Manager",
+          company: "Specialty Polymers Company",
+          period: "2010 – 2012",
+          details: "Managed a $600M product line with global accountability for maximizing contribution margin. Generated an additional $10M in contribution margin in 2010/2011. Reduced production costs by $4M in 2012 by optimizing asset operations."
+        },
+        {
+          title: "Sales Manager",
+          company: "Specialty Polymers Company",
+          period: "2008 – 2010",
+          details: "Managed $100M compounding customer base for North America. Negotiated contract extension at largest global compounding customer yielding $2.15M of additional margin. Delivered $4M of top-line growth through application development."
+        }
+      ],
+      certifications: [
+        "B.A. in Business Administration – 1997",
+        "Pipeline Management & Contract Negotiations",
+        "Customer Centric Selling Model"
+      ]
+    }
+  },
+  {
+    id: 6, refId: "C-6643",
+    role: "Executive Director, Global Procurement",
+    category: "Operations",
+    location: "Kildeer, IL",
+    experience: "20+",
+    experienceFull: "20+ Years",
+    initials: "GP",
+    education: "M.B.A., International Finance | B.S., Finance & Marketing",
+    expertise: ["Global Procurement", "Cost Leadership", "ESG & Sustainability"],
+    highlights: [
+      "Scaled annualized savings run rate from $4M to $17M by restructuring procurement at a $1.2B global pharma CDMO — managing $700M in spend with 50+ associates.",
+      "Directed a $1.4B spend portfolio at a $3.5B consumer products company, driving $100M+ in savings on a $900M global resin portfolio over 3 years.",
+      "Grew category management net savings from $15M to $45M per year and built ESG sustainable procurement programs with measurable Scope 1–3 carbon KPIs."
+    ],
+    bio: "Senior procurement leader with 20+ years building and scaling global procurement functions across pharma, consumer products, med-tech, and industrial sectors — known for transforming tactical teams into strategic, high-performing organizations that deliver sustainable cost leadership.",
+    fullSummary: {
+      summary: "Senior Procurement Leader with 15+ years experience building and scaling procurement functions in Consumer Products, Consumer Packaging, Med-Tech and Pharmaceutical Industries. Proven record building high-performing teams and achieving sustainable cost leadership through procurement strategies that strengthen business performance and resilience.",
+      competencies: [
+        "Strategy Development & Business Transformation",
+        "Global Category & Supplier Management",
+        "Contracting, Negotiation & Cost Leadership",
+        "Procurement & P2P Operations (Coupa, GEP, SAP, Oracle, Netsuite)",
+        "Procurement Outsourcing & GPO/Third-Party Sourcing",
+        "Make vs. Buy & Should Cost Analysis",
+        "Commodity Expertise — Resins, Packaging, Indirect",
+        "ESG & Sustainable Procurement (Scope 1–3)",
+        "Talent Development & High-Performing Team Building",
+        "P2P Implementation & Digital Procurement Portals"
+      ],
+      awards: [
+        "Scaled annualized savings run rate from $4M to $17M at a $1.2B pharma CDMO.",
+        "Delivered $100M+ in savings on a $900M global resin portfolio over 3 years.",
+        "Grew net savings from $15M to $45M per year through best-in-class category management.",
+        "Achieved 140% of FY16 savings target with $36M annualized savings and $27M in post-acquisition synergies.",
+        "Delivered 22% cost savings on key direct raw materials and nearly 20% on direct packaging.",
+        "Promoted from Senior Director to Vice President within 2 years at Consumer Products Company."
+      ],
+      experience: [
+        {
+          title: "Executive Director, Global Procurement (Head of Function)",
+          company: "Pharmaceutical CDMO Company",
+          period: "2022 – 2025",
+          details: "Head of procurement function with 50+ associates (7 direct) and $700M in spend under management at a $1.2B global high-growth CDMO. Restructured procurement from site-level tactical into a centralized high-performing team. Scaled annualized savings run rate from $4M to $17M. Leveraged GPOs and third-party providers to contribute $5M in incremental annual savings across MRO, energy, logistics, IT, and professional services. Launched digital procurement portal and developed Sustainable Procurement program as one of 5 key pillars of the Global ESG Initiative."
+        },
+        {
+          title: "Global Head of Procurement",
+          company: "DTC Teledentistry Company",
+          period: "2020 – 2022",
+          details: "Led global strategic and operational procurement, supply planning, and S&OP. Co-led enterprise implementation of Coupa P2P platform. Delivered 22% cost savings across key direct raw materials and nearly 20% in direct packaging through hands-on negotiations, dual-source strategies, and renegotiating unfavorable exclusivity contracts."
+        },
+        {
+          title: "Vice President, Procurement",
+          company: "Consumer Products Company",
+          period: "2017 – 2020",
+          details: "Led procurement function for a $3.5B business, overseeing $1.4B in spend with a team of 24. Promoted from Senior Director to VP in 2019. Directed strategy for a $900M global resin portfolio delivering $100M+ in savings over 3 years. Grew category management net savings from $15M to $45M per year. Implemented GEP platform for spend analytics, eSourcing, and savings project management."
+        },
+        {
+          title: "Global Procurement Director — Strategy & R&D Sourcing",
+          company: "Medical Technology Company",
+          period: "2014 – 2016",
+          details: "Managed a team of 9 with category management responsibility for $700M in direct spend globally. Developed a 3-year savings pipeline of ~$80M. Achieved 140% of FY16 savings target with $36M annualized savings and $27M in post-acquisition procurement synergies."
+        },
+        {
+          title: "Global Category Manager / Regional Category Manager / Sourcing Process Leader",
+          company: "Industrial Technology Company",
+          period: "2008 – 2014",
+          details: "Progressive roles of responsibility in a $3.5B global business. Led category management for plastics, metals, resins, mechanical, and tooling. Led sourcing process and P2P digital transformation initiatives."
+        }
+      ],
+      certifications: [
+        "Certified Supply Chain Manager (CSCP) — APICS",
+        "Six Sigma & Lean Six Sigma Green Belts",
+        "ESG & Sustainable Procurement Training, Scope 2–3 — Ecovadis (2024)",
+        "Certified Spanish Language Interpreter — State Dept. of Health and Human Services",
+        "M.B.A., International Finance",
+        "B.S., Finance & Marketing"
+      ]
+    }
+  },
+  {
+    id: 7, refId: "C-7729",
+    role: "Business Development Director",
+    category: "Sales & Strategy",
+    location: "San Antonio, TX",
+    experience: "25+",
+    experienceFull: "25+ Years",
+    initials: "BD",
+    education: "B.A., Spanish & International Relations",
+    expertise: ["Plastics & Injection Molding", "Latin America Markets", "Healthcare & Medical Devices"],
+    highlights: [
+      "Grew sales 15–20% annually across US, Mexico, and Latin America — with clients spanning Fortune 500 OEMs in automotive, packaging, healthcare, and industrial markets.",
+      "Led global healthcare business development across 9 manufacturing sites, selling injection molded components and contract manufacturing to market-leading clients worldwide.",
+      "Drove 18% annual sales growth for color & additive concentrates across Mexico and Latin America, managing direct accounts and a local sales and tech service team."
+    ],
+    bio: "Bilingual business development executive with 25+ years of plastics industry expertise and deep Latin American market experience — fluent in Spanish with boots-on-the-ground sales history across Spain, Peru, Mexico, and the US.",
+    fullSummary: {
+      summary: "Business development executive specializing in the plastics industry with a focus on international markets and Spanish-speaking regions. Extensive experience selling injection molded components, tooling, contract manufacturing, color & additive concentrates, and masterbatch across healthcare, automotive, packaging, industrial, and construction markets. Proven record of consistent double-digit annual sales growth with Fortune 500 OEMs across the US, Mexico, and Latin America.",
+      competencies: [
+        "Plastics Industry — Injection Molding, Masterbatch, Color & Additive Concentrates",
+        "International Business Development — Latin America, Spain, Peru, Mexico, US",
+        "Spanish Fluency — Business & Technical Level",
+        "Healthcare & Medical Device OEM Sales",
+        "Contract Manufacturing & Tooling Sales",
+        "Fortune 500 Account Management",
+        "Market & Competitive Analysis",
+        "Team Leadership & Sales Management",
+        "New Market Entry & Site Selection",
+        "Industrial, Automotive, Packaging & Fiber Markets"
+      ],
+      awards: [
+        "Grew sales 20% annually at masterbatch company while managing 2 tech service reps.",
+        "Grew color & additive concentrate sales 18% annually across Mexico and Latin America.",
+        "Grew sales 15% annually to Fortune 500 clients in industrial and packaging markets.",
+        "Led market and competitive analyses justifying construction of a Mexico masterbatch plant.",
+        "Led Mexico site evaluation process, selecting a plant location among 5 candidate cities.",
+        "Sold injection molded components and services from 9 global sites to healthcare clients worldwide."
+      ],
+      experience: [
+        {
+          title: "Business Development Manager",
+          company: "Injection Molding Company",
+          period: "2023 – Present",
+          details: "Sales of injection molded components, tooling, and assembly to top-tier medical device OEMs."
+        },
+        {
+          title: "Global Business Development Director, Healthcare Division",
+          company: "Injection Molding & Contract Manufacturing Company",
+          period: "2022 – 2023",
+          details: "Sold injection molded components, tooling, and contract manufacturing services from 9 global manufacturing sites to market-leading healthcare clients worldwide."
+        },
+        {
+          title: "Sales Director, Latin America",
+          company: "Injection Molding & Contract Manufacturing Company",
+          period: "2016 – 2022",
+          details: "Sold injection molded components, tooling, and assembly services from 3 manufacturing sites in Mexico. Grew sales 15% annually to Fortune 500 clients in the industrial and packaging markets across the United States, Mexico, and Latin America."
+        },
+        {
+          title: "Market Development Manager, Latin America",
+          company: "Specialty Color & Additive Concentrates Company",
+          period: "2010 – 2016",
+          details: "Grew sales of color & additive concentrates 18% annually in Mexico and Latin America. Clients included leading OEMs in automotive, fibers, packaging, appliance, and construction markets. Managed 1 salesperson and 1 tech service rep in Mexico while handling direct accounts."
+        },
+        {
+          title: "Various Managerial Positions",
+          company: "Masterbatch & Color Compounds Company",
+          period: "2000 – 2010",
+          details: "Conducted market and competitive analyses justifying construction of a Mexico masterbatch plant. Led Mexico site evaluation process selecting a plant location among 5 cities. Grew sales 20% annually while managing 2 technical service reps."
+        }
+      ],
+      certifications: [
+        "B.A. in Spanish, Minor in International Relations",
+        "Fluent Spanish — Business & Technical Level",
+        "International Business Experience: Spain, Peru, Mexico, United States"
+      ]
+    }
+  },
+  {
+    id: 8, refId: "C-8834",
+    role: "Senior Account Manager",
+    category: "Sales & Strategy",
+    location: "Charlotte, NC",
+    experience: "10+",
+    experienceFull: "10+ Years",
+    initials: "SA",
+    education: "Bachelor's Degree",
+    expertise: ["Polymers & TPE", "Medical & Automotive Markets", "New Business Development"],
+    highlights: [
+      "Drove 28% cumulative growth in a mature $10M territory and secured $400K in new business in 2024 alone, with $600K+ in active pipeline.",
+      "Delivered 110% year-over-year growth in a commission-only role — closing the largest sales order in company history entirely from a cold start.",
+      "Earned Rookie of the Year (2018), President's Club (2020), and Gold Club (2021) — conducts 15 customer visits weekly with disciplined Salesforce CRM management."
+    ],
+    bio: "Hunter-mentality technical sales professional with 10+ years in polymers, thermoplastics, specialty chemicals, and TPE — known for building territories from scratch, engaging R&D teams, and converting technical application needs into long-term customer wins.",
+    fullSummary: {
+      summary: "Technical sales leader with 10+ years of experience in the polymers, thermoplastics, specialty chemicals, and TPE markets. Proven hunter mentality with a history of driving rapid market penetration and delivering both new-business wins and multi-year growth, including 110% growth in a commission-only environment and 28% sustained growth in a $10M territory. Brings a deep customer network in medical, automotive, and consumer discretionary markets, with a strong track record of delivering successful polymer and materials projects. Highly skilled at engaging technical teams, collaborating with R&D, and translating application requirements into customized material solutions.",
+      competencies: [
+        "New Business Development & Hunter Prospecting",
+        "Polymers, Thermoplastics, TPE & Specialty Chemicals",
+        "Medical Device, Automotive & Consumer Discretionary Markets",
+        "Territory Management & Strategic Expansion",
+        "CRM Mastery & Salesforce Pipeline Management",
+        "Technical Sales & R&D Collaboration",
+        "Value-Based Selling & ROI Positioning",
+        "Contract Negotiation & Deal Closing",
+        "Accurate Forecasting & Data-Driven Decision Making",
+        "Remote Work Discipline & Face-to-Face Customer Engagement"
+      ],
+      awards: [
+        "Rookie of the Year — 2018",
+        "President's Club — 2020",
+        "Gold Club — 2021",
+        "Closed the largest sales order in company history from a cold-start territory.",
+        "Delivered 110% YoY growth leading the entire organization in performance.",
+        "28% cumulative growth in a mature $10M territory with $600K+ pipeline built in 2024."
+      ],
+      experience: [
+        {
+          title: "Senior Account Manager",
+          company: "Specialty Materials Company",
+          period: "2021 – Present",
+          details: "Drove 28% cumulative growth in a mature $10M territory through strategic hunting, cross-industry project development, and aggressive prospecting. Expanded presence in medical devices and automotive suppliers. Secured $400K in new business in 2024 and built $600K+ in pipeline. Conducts 15 customer visits weekly. Partners closely with R&D and formulation teams to provide tailored recommendations for color in TPE, thermoplastics, and specialty polymer solutions. Manages pipeline through disciplined Salesforce CRM."
+        },
+        {
+          title: "Account Manager",
+          company: "Specialty Chemicals Company",
+          period: "2016 – 2021",
+          details: "Delivered 110% year-over-year growth, leading the entire organization in performance. Closed the largest sales order in company history through disciplined prospecting and technical solution positioning. Built a customer base entirely from scratch. Earned Rookie of the Year (2018), President's Club (2020), and Gold Club (2021)."
+        }
+      ],
+      certifications: [
+        "Customer Centric Sales Training — 2021–2025",
+        "Lean Sigma Six White Belt — 2024",
+        "Bachelor's Degree — University, 2011"
+      ]
+    }
+  },
+  {
+    id: 9, refId: "C-9912",
+    role: "CIO / IT Director",
+    category: "Technology & IT",
+    location: "Longview, TX",
+    experience: "20+",
+    experienceFull: "20+ Years",
+    initials: "CI",
+    education: "MBA | B.A.A.S., Data Processing & Criminal Justice | CISM (in progress)",
+    expertise: ["Cybersecurity & Compliance", "Enterprise IT Strategy", "ERP & Cloud Infrastructure"],
+    highlights: [
+      "Served as CIO/CISO for a global BPO for 8 years — achieved 300% organizational growth, 8 consecutive compliance certifications, and reduced downtime by 250+ hours annually.",
+      "Reduced client threat exposure by 35% within six months at a cybersecurity consultancy, blocking 99% of malicious connections and raising compliance training adoption by 90%.",
+      "Increased customer retention by 40% through resilient infrastructure and generated $3M in new revenue as Director of Global Business Development."
+    ],
+    bio: "Senior IT and cybersecurity executive with 20+ years leading enterprise transformation across healthcare, BPO, and manufacturing — a USMC veteran known for stabilizing high-risk environments, delivering board-level outcomes, and building compliance-ready organizations.",
+    fullSummary: {
+      summary: "Senior IT and Cybersecurity Executive with 20+ years of leadership across healthcare (HIPAA), business process outsourcing, and compliance-driven environments. Owned enterprise IT strategy, cybersecurity governance, ERP oversight (Microsoft Dynamics 365), and multi-site operations for organizations ranging from regulated healthcare systems to global BPOs. Trusted to stabilize operations, lead transformations, and deliver board-level outcomes including compliance readiness, cost control, risk reduction, and scalable growth. USMC Veteran. Ready to relocate. Open to up to 80% travel.",
+      competencies: [
+        "IT Strategy & Governance",
+        "Cybersecurity & Regulatory Compliance (NIST, HIPAA, PCI, FTC Safeguards)",
+        "ERP & Enterprise Systems (Microsoft Dynamics 365, EHR/CRM)",
+        "Cloud & Hybrid Infrastructure (Azure / Microsoft 365)",
+        "Security Operations Center (SOC) Leadership",
+        "Budgeting, Cost Control & Vendor Management",
+        "Enterprise Transformation & Turnaround Leadership",
+        "Incident Response, Disaster Recovery & Business Continuity",
+        "Multi-Site & Global Operations Management",
+        "Executive & Board-Level Reporting"
+      ],
+      awards: [
+        "Enabled 300% organizational growth as CIO/CISO across international call centers.",
+        "Achieved 8 consecutive years of regulatory compliance certifications with zero audit failures.",
+        "Reduced downtime by 250+ hours annually through rebuilt IT operations and KPI monitoring.",
+        "Increased customer retention by 40% through resilient infrastructure improvements.",
+        "Reduced client threat exposure by 35% within six months at cybersecurity consultancy.",
+        "Generated $3M in new revenue and improved customer onboarding by 28% as Director of Global BD."
+      ],
+      experience: [
+        {
+          title: "Executive Advisor (CIO/CISO Advisory)",
+          company: "Healthcare Company",
+          period: "2025 – Present",
+          details: "Providing CIO/CISO advisory services to healthcare, BPO, and SMB organizations. Supporting IT modernization, cybersecurity governance, and compliance readiness (HIPAA, PCI, FTC). Advising executive leadership and boards on ERP evaluation, cloud strategy, vendor oversight, and risk management."
+        },
+        {
+          title: "Director of IT",
+          company: "Manufacturing Company",
+          period: "2025",
+          details: "Assumed full responsibility for enterprise IT operations, ERP oversight, cybersecurity, and vendor management. Developed comprehensive IT strategic plan and rebuild roadmap. Created 2026 IT operating and capital budget including vendor consolidation and cloud optimization. Authored a complete suite of IT security, compliance, incident response, disaster recovery, and business continuity policies aligned with NIST and ITIL."
+        },
+        {
+          title: "Director of IT",
+          company: "Cybersecurity Consultancy",
+          period: "2022 – 2025",
+          details: "Led and scaled a cybersecurity consultancy delivering compliance, SOC, and risk-management services to SMB clients in healthcare and manufacturing. Built and led a Security Operations Center. Reduced client threat exposure by 35% within six months, blocked 99% of malicious connections, and raised compliance training adoption by 90%."
+        },
+        {
+          title: "Chief Information Officer / Chief Information Security Officer",
+          company: "International BPO Company",
+          period: "2014 – 2022",
+          details: "Directed enterprise IT transformation enabling 300% organizational growth across international call centers. Established enterprise governance and compliance frameworks (NIST, HIPAA, PCI). Achieved 8 consecutive years of regulatory compliance certifications. Reduced downtime by 250+ hours annually. Increased customer retention by 40% through improved uptime and infrastructure resilience."
+        },
+        {
+          title: "Director of Global Business Development",
+          company: "International BPO Company",
+          period: "2011 – 2014",
+          details: "Owned global business development strategy for a nearshore BPO. Generated $3M in new revenue through strategic alliances and new client contracts. Improved customer onboarding by 28% through process redesign and creation of a new Implementation Team."
+        },
+        {
+          title: "Enterprise Technology Leader",
+          company: "International BPO Company",
+          period: "2001 – 2008",
+          details: "Led IT strategy and infrastructure modernization across global BPO operations, increasing systems availability by 30%. Managed global technology teams spanning infrastructure, development, reporting, and end-user services."
+        }
+      ],
+      certifications: [
+        "Master of Business Administration (MBA)",
+        "B.A.A.S. — Data Processing & Criminal Justice",
+        "CISM — in progress",
+        "ITIL 4 Foundation — in progress",
+        "USMC Veteran"
+      ]
+    }
+  },
+  {
+    id: 10, refId: "C-1047",
+    role: "Chief People Officer",
+    category: "Human Resources",
+    location: "Edgewood, TX",
+    experience: "15+",
+    experienceFull: "15+ Years",
+    initials: "CP",
+    education: "MBA, HR Management | BBA, HR Management | SPHR | SHRM-CP | PMP",
+    expertise: ["Strategic HR Leadership", "Talent & Retention", "HR Operations & Systems"],
+    highlights: [
+      "Saved $85K+ annually by outsourcing leave and disability tracking, and eliminated 2,500+ transactional HR hours per year through a company-wide onboarding system overhaul.",
+      "Reduced company turnover by 10% through employee engagement initiatives across 11 domestic and international teams — and cut direct labor turnover by 4% within less than a year as CPSO.",
+      "Led HR operations for 12K+ domestic and international employees, driving M&A due diligence, post-acquisition integration, and enterprise-wide HR process standardization."
+    ],
+    bio: "Dynamic HR executive with 15+ years leading strategic people initiatives across global, multi-site organizations — a proven change agent who aligns HR functions with business objectives to drive talent retention, operational efficiency, and long-term organizational growth.",
+    fullSummary: {
+      summary: "Dynamic and accomplished Human Resources Executive with 15+ years in leading strategic HR initiatives. Experience and expertise in aligning HR functions with business objectives to optimize organizational performance. Fosters collaborative partnerships across multiple levels to drive talent acquisition, development, and retention strategies. Implements comprehensive HR programs to drive employee engagement. Change agent with in-depth expertise in delivering impactful solutions to support long-term organizational success.",
+      competencies: [
+        "Strategic HR Leadership & Organizational Design",
+        "Talent Acquisition, Development & Retention",
+        "Total Rewards & Compensation Framework Design",
+        "HR Operations, HRIS & Systems Implementation",
+        "M&A Due Diligence & Post-Acquisition Integration",
+        "Employee Relations & Engagement",
+        "Change Management & Organizational Restructuring",
+        "Payroll, Benefits & Leave Administration",
+        "HR Metrics, KPIs & Data Analysis",
+        "Safety Programs, Compliance & Labor Law",
+        "Process Improvement & HR Process Design",
+        "Project Management & Cross-Functional Leadership"
+      ],
+      awards: [
+        "Saved $85K+ annually through outsourcing leave of absence and disability benefits tracking.",
+        "Eliminated 2,500+ transactional HR hours annually via company-wide onboarding system.",
+        "Reduced company turnover by 10% through employee engagement initiatives across 11 teams.",
+        "Reduced direct labor turnover by 4% in less than one year as Chief People & Safety Officer.",
+        "Successfully standardized HR processes across 11 separate domestic and international teams.",
+        "Completed Wharton Executive Strategy Leadership Program."
+      ],
+      experience: [
+        {
+          title: "Chief People & Safety Officer",
+          company: "Confidential",
+          period: "2024 – Present",
+          details: "Establishes strategic people objectives aligned to overall business strategy. Serves as advisor to CEO and executive staff. Oversees hiring, development, and retention strategies — reducing direct labor turnover by 4% in less than a year. Leads organizational realignment, compensation framework design, and safety programs including training, compliance, incident management, and KPIs."
+        },
+        {
+          title: "Director of HR Operations",
+          company: "Confidential",
+          period: "2021 – 2024",
+          details: "Drove comprehensive payroll, benefits, and HR systems for 12K+ domestic and international employees. Delivered $85K+ in annual savings through outsourcing leave and disability tracking. Implemented company-wide onboarding system saving 2,500+ hours annually. Designed enterprise-wide HR processes for consistency and efficiency. Participated in M&A activities including due diligence and acquisition integrations."
+        },
+        {
+          title: "Global Director of HR",
+          company: "Confidential",
+          period: "2020 – 2022",
+          details: "Directed transformational leadership during organizational restructuring. Served as subject matter expert and advisor to the company President. Standardized HR processes across 11 separate domestic and international teams. Reduced company turnover by 10% through employee engagement initiatives including intranet sites, town-hall meetings, and recognition programs."
+        },
+        {
+          title: "Regional HR Manager",
+          company: "Confidential",
+          period: "2014 – 2020",
+          details: "Built and sustained relationships with key partners across eight separate sites. Guided employees and management on employee relations issues. Drove people development initiatives including performance appraisals, promotions, and employee development. Managed diverse HR teams across multiple locations."
+        }
+      ],
+      certifications: [
+        "SPHR — Senior Professional in Human Resources",
+        "SHRM-CP — Society for Human Resource Management Certified Professional",
+        "Six Sigma Green Belt",
+        "PMP — Project Management Professional",
+        "Wharton Executive Strategy Leadership Program",
+        "MBA, Human Resources Management",
+        "BBA, Human Resources Management"
+      ]
+    }
+  },
+  {
+    id: 11, refId: "C-1138",
+    role: "Senior HR Manager",
+    category: "Human Resources",
+    location: "McDonough, GA",
+    experience: "20+",
+    experienceFull: "20+ Years",
+    initials: "HR",
+    education: "B.A., Business Administration | Army National Guard Veteran",
+    expertise: ["Manufacturing HR", "Turnover Reduction", "Employee Relations"],
+    highlights: [
+      "Reduced full-time turnover by 12% in 2023 and cut employee relations investigations by 30% in FY24 — managing all HR functions for a 500-person manufacturing plant.",
+      "Decreased turnover by 15% and increased retention by 8% as HR Manager at a food manufacturing company during the challenges of Covid-19.",
+      "Developed tiered pay scales, negotiated staffing agency contracts, and served as a strategic HR leader through a company merger — cutting temp-to-full-time conversion time by 4 days."
+    ],
+    bio: "Results-driven HR professional with 20+ years across manufacturing, logistics, and food production — an Army National Guard veteran known for cutting turnover, reducing investigations, and building safety-first, people-centered cultures in high-volume plant environments.",
+    fullSummary: {
+      summary: "Certified results-driven HR professional with proven skills in delivering training, collaborating throughout the organization to drive change, and delivering industry best practices. Recognized for strong attention to detail and organized nature. Superior work ethic with strong focus on safety and transparency. Genuine influencer who thrives on tough challenges and strives to meet organizational goals through innovative strategies. Army National Guard veteran with flight medic instructor experience.",
+      competencies: [
+        "Strategic HR Planning & Analytics",
+        "Manufacturing & Plant HR Operations",
+        "Turnover Reduction & Retention Strategy",
+        "Employee Relations & Conflict Management",
+        "Staffing Agency Negotiation & Temp Workforce Management",
+        "Compensation Design & Tiered Pay Scale Development",
+        "Onboarding, Offboarding & Payroll Processing",
+        "M&A & Merger Leadership Support",
+        "Succession Planning & People Development",
+        "Safety, Compliance & Labor Law"
+      ],
+      awards: [
+        "Reduced full-time workforce turnover by 12% in 2023.",
+        "Decreased employee relations investigations by 30% in FY24.",
+        "Reduced temp headcount to under 10% in 2025.",
+        "Cut temp-to-full-time conversion timeframe by 4 days.",
+        "Decreased turnover by 15% and increased retention by 8% during Covid-19.",
+        "Strategic HR leader through a company merger."
+      ],
+      experience: [
+        {
+          title: "Senior HR Manager",
+          company: "Consumer Products Manufacturing Company",
+          period: "2022 – Present",
+          details: "Strategic leader responsible for 4 direct reports plus custodial staff across all shifts at a 500 full-time employee manufacturing plant with 100 temporary associates. Reduced turnover by 12% in 2023, cut employee relations investigations by 30% in FY24, and reduced temp headcount to under 10% in 2025. Negotiated staffing agency contracts, developed tiered hourly pay scales, cut temp-to-FTE conversion time by 4 days, and served as strategic leader through a company merger."
+        },
+        {
+          title: "Human Resources Manager",
+          company: "Food Manufacturing Company",
+          period: "2020 – 2022",
+          details: "Managed six direct reports and drove both corporate strategic HR initiatives and plant operations. Developed retention strategies during Covid-19. Decreased turnover by 15% in 2021 and increased overall retention by nearly 8% from the prior year."
+        },
+        {
+          title: "Human Resources Generalist",
+          company: "Packaging Manufacturing Company",
+          period: "2017 – 2019",
+          details: "Supported 300 employees including senior leadership. Coordinated recruiting events, led all onboarding and offboarding, developed policies, facilitated strategic planning sessions, processed bi-weekly payroll, and provided benefits support including 401K."
+        },
+        {
+          title: "Human Resources Generalist",
+          company: "Logistics & Delivery Company",
+          period: "1995 – 2003",
+          details: "Assessed turnover rates and implemented retention strategies. Advised management on corrective action, served as liaison for union and non-union employee grievances, staffed multiple sites, and maintained compliance with federal and state employment laws."
+        },
+        {
+          title: "Flight Medic Instructor",
+          company: "Army National Guard",
+          period: "1989 – 1999",
+          details: "Deployed to forward operating bases providing medical care. Managed eight combat flight medics across all training exercises, fire guard, and pre-flight inspections. Provided pre-flight safety and risk assessment briefings. Maintained all FAA compliance records and annual flight hour requirements."
+        }
+      ],
+      certifications: [
+        "B.A. in Business Administration",
+        "Army National Guard Veteran — Flight Medic Instructor",
+        "Certified HR Professional",
+        "Special Education Teaching Certification (2006–2016)"
+      ]
+    }
+  },
+  {
+    id: 12, refId: "C-1253",
+    role: "EHS Manager",
+    category: "EHS & Safety",
+    location: "Neenah, WI",
+    experience: "8+",
+    experienceFull: "8+ Years",
+    initials: "EH",
+    education: "B.S., Occupational Safety | Minor in Environmental Science | CSP Certified",
+    expertise: ["EHS Program Development", "Regulatory Compliance", "Manufacturing Safety"],
+    highlights: [
+      "Improved EHS compliance audit scores by 50% and increased near miss reporting by 25%+ through targeted gap assessments and behavioral safety programs across a 600+ employee facility.",
+      "Achieved a 95% audit grade at a consumer products manufacturer and led 10+ monthly safety kaizens with 90% completion on Top 10 risk reductions — including ergonomic redesigns.",
+      "Managed a $1M+ safety budget for 4,000+ employees at a major logistics company, mentoring 5 team members into EHS manager roles and leading an 80% reduction in robotics near miss incidents."
+    ],
+    bio: "Certified Safety Professional (CSP) with 8+ years driving EHS culture across manufacturing, logistics, and specialty chemical environments — known for translating complex regulations into practical workplace programs that measurably reduce risk and improve compliance scores.",
+    fullSummary: {
+      summary: "Certified Safety Professional (CSP) leader enthusiastic about driving positive, systematic changes in work processes and people. Experienced in successful team building through engagement and continuous improvement in all aspects of EHS, spanning multiple warehouses and manufacturing facilities. Well versed in regulatory standards, compliance, and site auditing — with a strong ability to translate regulations into everyday workplace safety practices.",
+      competencies: [
+        "EHS Program Development & Implementation",
+        "Regulatory Compliance (OSHA, EPA, DOT, IATA, IMDG, RCRA)",
+        "Incident Investigation & Root Cause Analysis",
+        "Risk Assessment & Mitigation",
+        "Behavioral Safety & Employee Engagement Programs",
+        "Ergonomic Assessment & Process Improvement",
+        "Machine Guarding (ANSI B11) & Hazard Identification",
+        "Environmental Management & Regulatory Reporting (Tier II, TRI)",
+        "Contractor & Vendor Management",
+        "Audit Preparation, Execution & Corrective Action Tracking",
+        "Policy & Procedure Creation",
+        "Metrics, Data Analytics & Safety Management Systems (Gensuite, Workday)"
+      ],
+      awards: [
+        "Improved EHS audit scores by 50% through targeted gap assessments and corrective action tracking.",
+        "Increased near miss reporting by 25%+ at a 600+ employee manufacturing facility.",
+        "Increased safety engagement program participation by 15%.",
+        "Achieved 95% overall grade from auditors at consumer products manufacturer.",
+        "Led 80% reduction in robotics near miss incidents year over year.",
+        "Managed $1M+ safety budget for 4,000+ employees.",
+        "Authored white paper on dock redesign adopted across all company warehouses and new builds.",
+        "Mentored 5 team members into EHS manager roles at other locations and companies."
+      ],
+      experience: [
+        {
+          title: "EHS Manager",
+          company: "Manufacturing Company",
+          period: "2024 – 2026",
+          details: "Developed and implemented site EHS policies, injury prevention strategies, root cause investigations, and training programs for 600+ employees. Increased safety engagement by 15% through behavioral safety programs. Directed machine guarding improvements using ANSI B11 standards. Improved EHS compliance audit scores by 50% and increased near miss reporting by 25%+ through targeted gap assessments and corrective action tracking."
+        },
+        {
+          title: "EHS Manager",
+          company: "Consumer Products Manufacturing Company",
+          period: "2022 – 2024",
+          details: "Implemented comprehensive EHS culture through single point accountability (SPA) program. Achieved 95% overall grade from auditors. Led 10+ safety kaizens per month with 90% completion on Top 10 risk reductions. Conducted 14 ergonomic assessments resulting in redesigned workstations including spool cut station, profile chipper, and mini spool lifts. Developed active shooter plan in partnership with local emergency management."
+        },
+        {
+          title: "Regulatory Affairs / EHS Manager",
+          company: "Specialty Chemical Products Company",
+          period: "2020 – 2022",
+          details: "Developed and implemented 10+ EHS programs and procedures. Managed product labeling, SDS creation, VOC restrictions, pesticide registrations, and DOT/IATA/IMDG shipping compliance across 200+ products. Completed all annual regulatory reporting including Tier II, TRI, Annual Waste Summary, and Mill Pay. Conducted quality control lab testing using atomic absorption, infrared scan, titrations, and other techniques."
+        },
+        {
+          title: "Workplace Health & Safety Manager",
+          company: "Logistics & E-Commerce Company",
+          period: "2018 – 2020",
+          details: "Managed teams of up to 15 including safety specialists, EMTs, personal trainers, and hazmat coordinators. Managed $1M+ safety budget for 4,000+ employees. Mentored 5 team members into EHS manager roles. Led risk reduction projects including forklift light curtains, loading dock PIT corrals, and machine guarding updates. Presented safety metrics to senior leadership in daily, monthly, and quarterly reviews."
+        },
+        {
+          title: "Workplace Health & Safety Specialist",
+          company: "Logistics & E-Commerce Company",
+          period: "2017 – 2018",
+          details: "Trained 20+ area managers on regulatory compliance, inspections, root cause analysis, and EHS management. Led robotics process improvement resulting in 80% reduction in near miss incidents year over year. Authored white paper on dock redesign to eliminate PIT/pedestrian interactions — adopted into all company warehouses and new building designs."
+        }
+      ],
+      certifications: [
+        "Certified Safety Professional (CSP)",
+        "OSHA 30 Hour General Industry",
+        "OSHA 10 Hour Confined Space",
+        "IATA/IMDG Hazardous Shipper",
+        "RCRA Hazardous Waste Management",
+        "Red Cross First Aid Instructor",
+        "B.S., Occupational Safety — Minor in Environmental Science"
+      ]
+    }
+  },
+  {
+    id: 13, refId: "C-1364",
+    role: "Business Development Manager",
+    category: "Sales & Strategy",
+    location: "Chadds Ford, PA",
+    experience: "25+",
+    experienceFull: "25+ Years",
+    initials: "BD",
+    education: "B.S., Environmental Science | Six Sigma Green Belt | Certified Metalworking Fluid Specialist",
+    expertise: ["Specialty Chemicals", "Bio-Based Materials", "Market Development"],
+    highlights: [
+      "Added $60M into the pipeline within 6 months supplying chemically recycled PET to global brands — and closed a $13M annual contract with a leading global condiment packager.",
+      "Led North American strategic marketing for ethoxylated specialty chemicals, delivering a 10% revenue increase over $150M baseline with a 3.2% net margin surge in a single year.",
+      "Built a global automotive BD team of 9 from scratch — closing $1.4M in year one and $1.9M in year two — while pioneering bio-based dispersant commercialization for OEM specifications."
+    ],
+    bio: "Specialty chemicals commercial leader with 25+ years in business development, strategic marketing, and market entry across bio-based materials, wax additives, colorants, polymers, and circular packaging — a published author, trade conference speaker, and podcast host with deep C-suite relationship expertise.",
+    fullSummary: {
+      summary: "Strategic growth and business development executive with 25+ years driving commercial expansion across specialty chemicals, bio-based materials, wax additives, colorants, coatings, and circular packaging markets. Known for building go-to-market strategies, launching new product platforms, and developing high-performing teams. Active industry thought leader — published author, trade conference speaker, webinar host, and podcast creator. Board officer with the Eastern Coatings Foundation and multiple active industry organization memberships.",
+      competencies: [
+        "Strategic Business Development & Market Entry",
+        "Bio-Based & Sustainable Materials Commercialization",
+        "Specialty Chemicals — Wax Additives, Colorants, Polymers, Coatings, Emulsions",
+        "Circular Packaging & Chemically Recycled PET",
+        "C-Suite Engagement & Strategic Partnerships",
+        "New Product Development (NPD) & Commercialization",
+        "Strategic Marketing Planning & Execution",
+        "Global Team Leadership & Employee Development",
+        "Merger & Acquisition Analysis",
+        "CRM Management & Digital Marketing",
+        "Trade Event Planning & Thought Leadership",
+        "Brand Management & Marketing Communications"
+      ],
+      awards: [
+        "Added $60M into pipeline within 6 months for circular packaging with global consumer brands.",
+        "Closed a $13M annual contract to supply chemically recycled PET to a global condiment packager.",
+        "Delivered 10% revenue growth over $150M baseline with 3.2% net margin surge in one year.",
+        "Commercialized $5.2M North American bio-based ethoxylated derivative program.",
+        "Closed $1.4M in year one and $1.9M in year two for global automotive bio-based platform.",
+        "Board Officer — Eastern Coatings Foundation (Treasurer) and Industry Trade Association.",
+        "Founder and Chairman of a corporate Diversity ERG.",
+        "Creator and host of an industry podcast; guest instructor at Waterborne Symposium and Eastern Coatings Show 2023."
+      ],
+      experience: [
+        {
+          title: "Business Development Manager",
+          company: "Specialty Chemicals Company",
+          period: "2025 – Present",
+          details: "North American head of business development for the Specialty Plastics (Circular Packaging) business unit. Added $60M into the pipeline funnel within 6 months, connecting global consumer brands with chemically recycled PET packaging. Closed a $13M annual supply contract with a leading global condiment packager."
+        },
+        {
+          title: "Business Development Manager",
+          company: "Colorant Specialty Company",
+          period: "2024",
+          details: "North American head of business development for Specialty Plastics and CASE Markets. Focused on colorant solutions for PVC/PET and CASE markets. Designed and implemented a global strategy to introduce liquid color concentrates to the North American market."
+        },
+        {
+          title: "Global Director of Business & Market Development",
+          company: "Specialty Wax Additives Company",
+          period: "2023 – 2024",
+          details: "Senior leadership council member focused on extending the micronized wax portfolio to adjacent chemical industries. Researched and developed go-to-market strategies for masterbatch, agriculture, energy storage, ceramics, and paper markets. Steered portfolio development to address regulatory drivers including PFAS and microplastics. Added $15M in pipeline opportunities and developed $2.5M in new go-to-market revenue."
+        },
+        {
+          title: "Head of Strategic Marketing North America — Industrial & Consumer Specialties",
+          company: "Specialty Chemicals Company",
+          period: "2019 – 2023",
+          details: "Transformational marketing leader expanding market reach across multiple vertical segments including bio-based materials. North American chair for the company's bio-based ethoxylated derivative program — $5.2M commercializing in 2023. Strategic Market Plan execution delivered 10% revenue increase over $150M baseline with a 3.2% net margin surge. Conducted M&A analysis and led new product development to commercialization."
+        },
+        {
+          title: "Global Head of Automotive Business Development",
+          company: "Bio-Based Specialty Chemicals Company",
+          period: "2016 – 2019",
+          details: "Pioneered and built a global team of 9 (marketing, BD, and technical) to execute a strategy influencing automotive OEMs to specify bio-based performance chemicals into part specifications. Owned the NA launch for a bio-based dispersant platform — closing $1.4M in year one and $1.9M in year two. Mentored 2 direct reports to internal promotions."
+        }
+      ],
+      certifications: [
+        "B.S., Environmental Science — Minor in Chemistry (1995)",
+        "Six Sigma Green Belt (2006)",
+        "STLE CMFS — Certified Metalworking Fluid Specialist (2006)",
+        "Market Edge Advanced Strategic Marketing (2020)",
+        "Lean Manufacturing for Teams (2010)",
+        "Eastern Coatings Foundation — Board Officer (Treasurer)",
+        "Industry Trade Association — Board Officer (Secretary, Treasurer, Website/Social Media Chair)",
+        "NAAAP Co-Founder & Active Member | SPE | SAE | STLE Active Member"
+      ]
+    }
+  },
+  {
+    id: 14, refId: "C-1475",
+    role: "Senior Account Manager",
+    category: "Sales & Strategy",
+    location: "Winston-Salem, NC",
+    experience: "10+",
+    experienceFull: "10+ Years",
+    initials: "SA",
+    education: "B.S., University (2011)",
+    expertise: ["Customer Relationship Management", "Plant & Operations Liaison", "Technical Sales Support"],
+    highlights: [
+      "Currently serving as Plant Manager at a specialty foam/chemicals manufacturer — acting as the strategic liaison between plant operations and customer requirements, translating technical processes and production capabilities directly to clients.",
+      "Directed daily operations for a 200-bed healthcare facility with 120+ employees across 10+ departments — building long-term stakeholder relationships and maintaining a deficiency-free compliance record.",
+      "Proven track record across manufacturing, government, and healthcare managing full life-cycle customer engagement, cross-functional communication, and high-volume account coordination — ready for a remote sales role with significant travel."
+    ],
+    bio: "Relationship-driven account manager with 10+ years spanning specialty chemicals manufacturing, government administration, and healthcare operations — uniquely positioned to bridge the gap between plant capabilities and customer needs with hands-on technical fluency and a strong organizational foundation.",
+    fullSummary: {
+      summary: "Dynamic and relationship-driven Account Manager with 10+ years of experience building customer relationships, managing multi-department operations, and strengthening service delivery across complex environments. Strong background in administrative operations, customer service leadership, and cross-functional communication. Skilled at identifying customer needs, aligning technical requirements, and ensuring seamless coordination between customers and operational teams. Highly organized, detail-focused, and experienced in managing full life-cycle customer engagement — from first contact through ongoing account support. Ready to support a fast-moving, remote sales environment with significant travel.",
+      competencies: [
+        "Customer Relationship Management & Account Development",
+        "Technical & Product Application Communication",
+        "Plant–Customer Liaison & Cross-Functional Coordination",
+        "Sales Cycle Ownership — Lead → Proposal → Close → Support",
+        "New Business Development & Lead Generation",
+        "Contract & Pricing Discussions",
+        "CRM, Data Tracking & Documentation",
+        "Trade Shows & Customer Meetings",
+        "Territory Development & Travel Readiness",
+        "Problem Solving & Customer Issue Resolution",
+        "Workforce Planning & Operational Leadership",
+        "Compliance, Documentation & Attention to Detail"
+      ],
+      awards: [
+        "Maintained a deficiency-free compliance record while directing a 200-bed facility with 120+ employees.",
+        "Reduced financial inconsistencies through invoice verification and vendor discrepancy resolution.",
+        "Streamlined administrative workflows, improving service response and cross-department communication.",
+        "Designed corrective action plans improving quality and service reliability at a healthcare facility.",
+        "Served as strategic liaison between plant operations and customer requirements at specialty chemicals manufacturer.",
+        "Supported forecasting, performance analytics, and operational strategy initiatives for municipal leadership."
+      ],
+      experience: [
+        {
+          title: "Plant Manager",
+          company: "Specialty Foam/Chemicals Manufacturing Company",
+          period: "2024 – Present",
+          details: "Serves as strategic liaison between plant operations and customer requirements, translating customer needs into operational actions and explaining technical processes and product capabilities to clients. Leads daily communication with leadership, suppliers, and clients on timelines and deliverables. Leads workforce planning, productivity initiatives, and operational improvements. Works closely with cross-functional teams to align plant capabilities with customer expectations — functioning similarly to a technical account management role."
+        },
+        {
+          title: "Accounts Payable & Customer Service Administrator",
+          company: "Municipal Government",
+          period: "2021 – 2024",
+          details: "High-volume customer interaction across multiple departments. Maintained accurate records and customer files. Supported leadership with performance data analysis and forecasting. Built strong stakeholder relationships, proactively addressing customer concerns. Reduced financial inconsistencies through invoice verification and vendor discrepancy resolution. Streamlined administrative workflows improving service response and cross-department communication."
+        },
+        {
+          title: "Licensed Nursing Home Administrator",
+          company: "Rehabilitation and Recovery Center",
+          period: "2016 – 2020",
+          details: "Directed daily operations for a 200-bed facility with 120+ employees across 10+ departments. Built long-term relationships with residents, families, vendors, and regulatory partners. Designed corrective action plans improving quality and service reliability. Maintained a deficiency-free record ensuring continuous compliance with state and federal standards."
+        }
+      ],
+      certifications: [
+        "B.S. — University, 2011",
+        "Licensed Nursing Home Administrator",
+        "Travel Ready — Significant travel acceptable"
+      ]
+    }
+  },
+  {
+    id: 15, refId: "C-1586",
+    role: "Senior Inside Sales & Account Manager",
+    category: "Sales & Strategy",
+    location: "Lewisville, TX",
+    experience: "20+",
+    experienceFull: "20+ Years",
+    initials: "IS",
+    education: "B.S., Business Administration | Lean Six Sigma | GMP Trained",
+    expertise: ["Industrial Manufacturing Sales", "ERP & Order Management", "Technical Customer Support"],
+    highlights: [
+      "Manages executive-level regional and global accounts at a Fortune 500 industrial manufacturer — overseeing time-sensitive orders from receipt through final delivery with full ERP, quoting, billing, and credit memo ownership.",
+      "5 years as a Global CS Account Manager handling international accounts remotely — managing forecasts, inventory, technical support, dispatch, chargebacks, and accounts receivable across a full sales cycle.",
+      "Maintained $600K/month parts inventory at a Fortune 500 food equipment manufacturer — managing ERP, audits, warranty claims, cycle counts, and cross-training of department personnel."
+    ],
+    bio: "Results-driven manufacturing sales and account management professional with 20+ years across Fortune 500 industrials, contract parts services, and equipment manufacturing — GMP and Lean Six Sigma trained, with deep ERP fluency and a track record of managing complex global accounts with precision and responsiveness.",
+    fullSummary: {
+      summary: "Results-driven manufacturing professional with over 20 years of experience in Account Management, Customer Service, Parts, Procurement, Inventory Management, Quality and Inspection. GMP and Six Sigma trained, with superior negotiation skills. Personable team player, excellent communicator and leader. Experienced across manufacturing, customer service & technical support, shipping & receiving, parts, procurement, logistics & inventory, quoting, dispatch, sales, warranty, quality inspection, distribution, and talent recruitment.",
+      competencies: [
+        "Executive-Level Regional & Global Account Management",
+        "ERP Systems — Order Entry, Quoting & Data Management",
+        "Technical Product Support & End-User Training",
+        "Inventory Management, Forecasting & Procurement",
+        "Parts Coordination, Warranty & Credit Memo Processing",
+        "Accounts Receivable & Billing (Regional & International)",
+        "Technician Dispatch & Field Coordination",
+        "Chargeback Resolution & Finance Collaboration",
+        "GMP & Lean Six Sigma",
+        "Process Improvement & Procedure Development",
+        "Customer Issue Escalation & Problem Resolution",
+        "Cross-Functional Communication & Team Leadership"
+      ],
+      awards: [
+        "Managed executive-level regional and global accounts at a Fortune 500 industrial manufacturer.",
+        "Handled all regional and international sales accounts remotely for 5 years as Global CS Account Manager.",
+        "Maintained $600K/month parts inventory using ERP control systems at a Fortune 500 company.",
+        "GMP certified and Lean Six Sigma trained.",
+        "Completed advanced training in new product lines and provided technical escalation support to end users.",
+        "Developed forecasting best practices to maintain adequate stock levels and prevent outages."
+      ],
+      experience: [
+        {
+          title: "SR Inside Sales Rep II",
+          company: "Industrial Manufacturing Company (Fortune 500)",
+          period: "2024 – Present",
+          details: "Manages executive-level regional and global accounts. Reviews and assigns time-sensitive projects. Monitors orders from receipt through final delivery. Provides quoting and pricing using price sheets, discounts, and program forms. Presents technical data for new products. Implements forecasting best practices with purchasing and sales. Approves credit memos, reviews invoiced orders, and processes billing for regional and global accounts with Finance. Inputs and edits orders and quotes daily in ERP system."
+        },
+        {
+          title: "Global CS Account Manager / Technical Support (Remote)",
+          company: "Contract Parts & Equipment Services Company",
+          period: "2019 – 2024",
+          details: "Handled all regional and international sales accounts remotely. Managed full order lifecycle in ERP. Maintained product and inventory knowledge. Developed forecasts and maintained stock levels. Dispatched technicians based on availability and expertise. Processed billing and accounts receivable for regional and international accounts. Resolved chargeback discrepancies with customers and Finance. Provided technical support to end users and participated in new product training."
+        },
+        {
+          title: "Spare Parts & Service Administrator / Technical Product Support",
+          company: "HVAC & Automotive Equipment Manufacturer",
+          period: "2017 – 2019",
+          details: "Supported spare part quotation and ordering process. Sourced parts from vendors and negotiated pricing. Provided help desk technical support by phone. Managed vendor and pricing data in ERP. Coordinated part identification, verification, and auditing. Dispatched technicians and followed up on warranty job completions. Developed and maintained strong customer relationships."
+        },
+        {
+          title: "Parts Coordinator",
+          company: "Commercial Food Equipment Manufacturer — Service Division (Fortune 500)",
+          period: "2016 – 2017",
+          details: "Maintained $600K/month parts inventory using ERP control system including internal audits. Requisitioned parts from corporate and managed purchase order follow-up. Processed warranty claims (RAT), verified maintenance credits, handled cycle counts, and managed all inventory. Assisted in training and cross-training of department personnel. Performed dispatching, shipping, and receiving duties."
+        }
+      ],
+      certifications: [
+        "B.S., Business Administration — Minor: Communications & Leadership",
+        "Mastering Adjusting Entries — American Institute of Professional Bookkeepers",
+        "QuickBooks Level 1 | Excel Certification",
+        "Good Manufacturing Practices (GMP)",
+        "Lean Six Sigma",
+        "Corporate Leadership & Diversity, Equity & Inclusion Training"
+      ]
+    }
+  },
+  {
+    id: 16, refId: "C-1697",
+    role: "Technical & Commercial Sales Manager",
+    category: "Sales & Strategy",
+    location: "Dalton, GA",
+    experience: "30+",
+    experienceFull: "30+ Years",
+    initials: "TC",
+    education: "B.S., Chemistry & Polymers | Business Management | Bilingual: German (Native) & English (Fluent)",
+    expertise: ["Masterbatch & Color Solutions", "Fibers & Plastics Markets", "Technical Sales & Application Support"],
+    highlights: [
+      "30+ years of specialized expertise in color and additive masterbatch for fibers, packaging, and engineered plastics — managing $12M+ in annual sales and growing customer bases across North America and Europe.",
+      "Deep technical fluency across color matching, additive formulation, plant trials, and production troubleshooting — bridging R&D, manufacturing, and commercial teams to deliver customer-specific solutions.",
+      "Bilingual (German native, English fluent) with hands-on customer experience across Europe and North America — backed by a B.S. in Chemistry & Polymers and formal business management training."
+    ],
+    bio: "Bilingual technical and commercial sales professional with 30+ years in the plastics and masterbatch industry — a rare combination of deep chemistry expertise and commercial account management across fiber, packaging, and engineered applications in North America and Europe.",
+    fullSummary: {
+      summary: "Technical and commercial sales professional with more than 30 years of experience in the plastics and masterbatch industry, focused on color and additive solutions for fibers, packaging, and engineered applications. Experienced in managing customer relationships and business development across multiple geographies. Skilled in coordinating technical projects, supporting plant trials, and aligning production, R&D, and commercial teams to deliver solutions that meet customer and market needs. Native German speaker, fluent in English.",
+      competencies: [
+        "Business Development & Account Management",
+        "Color Matching & Additive Formulation",
+        "Technical Sales & Application Support",
+        "Masterbatch Solutions — Fibers, Packaging, Engineering Plastics",
+        "Plant Trials & Production Troubleshooting",
+        "Customer Relationship Management",
+        "Product Development & Commercialization",
+        "Market Strategy & Pricing Analysis",
+        "Cross-Functional Collaboration (R&D, Manufacturing, Commercial)",
+        "CRM, SAP, Salesforce & Microsoft Office",
+        "Bilingual — German (Native) & English (Fluent)",
+        "Trade Show Representation & Industry Partnerships"
+      ],
+      awards: [
+        "Managed $12M+ in annual fiber masterbatch sales as Market Segment Manager.",
+        "30+ years of continuous career growth in specialty masterbatch and plastics.",
+        "Grew customer base across North America through targeted outreach and product development.",
+        "Supported plant trials and qualifications for customer implementations across multiple geographies.",
+        "Set up and managed a technical lab for color and additive development in thermoplastics and synthetic fibers.",
+        "Worked directly with customers across Europe on technical service, color matching, and application support."
+      ],
+      experience: [
+        {
+          title: "Technical & Commercial Manager, Fibers",
+          company: "Specialty Materials Company",
+          period: "2020 – 2025",
+          details: "Managed customer accounts and new business development for color and additive masterbatch solutions in fiber applications. Provided technical support including color development, plant trials, and production troubleshooting. Collaborated with R&D and manufacturing to ensure projects met cost, performance, and delivery targets. Supported strategic planning for new product introductions and customer-specific initiatives."
+        },
+        {
+          title: "Market Segment Manager, Fibers",
+          company: "Specialty Masterbatch Company",
+          period: "2015 – 2020",
+          details: "Managed the Fibers market segment including sales strategy, pricing, and customer relationships. Oversaw $12M+ in annual sales and expanded the customer base through targeted outreach and product development. Maintained key account relationships across North America while identifying new growth areas. Represented the company at trade shows and industry events."
+        },
+        {
+          title: "Business Manager",
+          company: "Specialty Chemicals Company",
+          period: "2002 – 2015",
+          details: "Directed commercial and technical activities for the North American Fibers business. Managed sales, customer support, and new product development. Worked with customers to develop customized masterbatch solutions and supported plant qualifications. Coordinated with global production and lab teams to meet customer specifications and improve response times."
+        },
+        {
+          title: "Technical Manager",
+          company: "Specialty Masterbatch Company",
+          period: "1997 – 2002",
+          details: "Set up and managed the technical lab for color and additive development in thermoplastics and synthetic fibers. Oversaw color matching, formulation work, and quality control. Led technical support and plant trial activities for customer implementations."
+        },
+        {
+          title: "Technical Application Specialist",
+          company: "Specialty Chemicals Company",
+          period: "1991 – 1997",
+          details: "Developed and supported color and additive masterbatch solutions for engineering plastics. Worked directly with customers across Europe on technical service, color matching, and application support. Supervised a small development team and streamlined lab processes to improve efficiency."
+        }
+      ],
+      certifications: [
+        "B.S., Chemistry & Polymers",
+        "Business Management — University Business School (2003)",
+        "Marketing for Technical Professionals — University Business School (2020)",
+        "Value-Based Selling Training (2010)",
+        "Leadership Training (2011)",
+        "SAP, Salesforce, CRM & Production Systems",
+        "German: Native | English: Fluent"
+      ]
+    }
+  },
+  {
+    id: 17, refId: "C-1708",
+    role: "Plant FSQA Manager",
+    category: "Operations",
+    location: "Millsboro, DE (Open to Relocation)",
+    experience: "20+",
+    experienceFull: "20+ Years",
+    initials: "FQ",
+    education: "B.S., Chemistry | HACCP | CGMP | SAP",
+    expertise: ["Food Safety & Quality Assurance", "HACCP & Regulatory Compliance", "Poultry Processing Operations"],
+    highlights: [
+      "Currently managing all FSQA operations for a poultry processing plant — overseeing an assistant plant manager, HACCP superintendent, supervisor, and 26 technicians across two shifts, with steady reduction in NRs and improved Salmonella categories.",
+      "Served as Corporate FSQA Manager overseeing two further processing facilities — managing 2 plant FSQA managers, 1 HACCP coordinator, and 40 technicians across portioning, deboning, wing segmenting, and MSC operations.",
+      "20+ years in poultry and food processing FSQA — from QA Team Lead supervising 30 technicians through HACCP coordination and corporate oversight — with deep USDA liaison experience and a B.S. in Chemistry."
+    ],
+    bio: "Food safety and quality assurance leader with 20+ years in poultry processing — a hands-on HACCP expert and USDA liaison who has built and managed FSQA teams at the plant and corporate level, driving consistent NR reduction, audit compliance, and food safety culture across multi-shift operations.",
+    fullSummary: {
+      summary: "Experienced Food Safety and Quality Assurance professional with 20+ years in poultry and food processing environments. Deep expertise in HACCP plan development and management, SSOP, GMP, USDA regulatory compliance, internal and third-party auditing, microbial sampling, and multi-shift team leadership. Proven track record of reducing non-compliance reports, improving Salmonella performance categories, managing departmental budgets, and developing quality and food safety culture across large hourly workforces. B.S. in Chemistry.",
+      competencies: [
+        "HACCP Plan Development, Editing & Management (Raw & RTE)",
+        "SSOP & GMP Program Management",
+        "USDA Regulatory Compliance & Liaison (9 CFR)",
+        "Food Safety Audits — Internal, Third-Party & BRC",
+        "Salmonella Category Management & NR Reduction",
+        "Multi-Shift Team Leadership & Staff Development",
+        "Microbial Sampling, Swab Testing & Data Interpretation",
+        "Inventory Management — Hold, Release & Finished Goods",
+        "Budget Management & Staffing Cost Reduction",
+        "Documentation Review & Control",
+        "Sanitation Management & Environmental Sampling",
+        "SAP, CFS, HAT, MS Office"
+      ],
+      awards: [
+        "Consistent and steady reduction of total NRs while improving Salmonella categories for parts and whole birds.",
+        "Managed FSQA operations across two further processing facilities as Corporate FSQA Manager.",
+        "Successfully navigated USDA Food Safety Audits at plant and corporate level.",
+        "Achieved BRC and industry-wide compliance audit standards as HACCP QA Coordinator.",
+        "Supervised 30+ QA technicians for 16 years as QA Team Lead with full hiring and performance management responsibility.",
+        "Reduced overall staffing expenditures while maintaining food safety and quality standards."
+      ],
+      experience: [
+        {
+          title: "Plant FSQA Manager",
+          company: "Poultry Processing Company",
+          period: "2022 – Present",
+          details: "Oversees an assistant plant manager, HACCP superintendent, supervisor, and 26 technicians across two shifts. Develops and edits HACCP, SSOP, and GMP plans. Acts as liaison between facility and USDA officials. Drives steady reduction of total NRs and improved Salmonella performance categories. Manages departmental budget and leads training programs for management and hourly staff to identify quality issues and food safety concerns."
+        },
+        {
+          title: "Corporate FSQA Manager",
+          company: "Poultry Processing Company",
+          period: "2021",
+          details: "Corporate food safety and quality assurance manager for two further processing poultry plants. Oversaw two plant FSQA managers, one HACCP coordinator, and 40 technicians across two shifts. Managed quality programs for portioning, breast deboning, wing segmenting, and MSC operations supporting food service and RTE customers. Implemented training programs to improve product quality and reduce food safety risks. Directly involved with plant and regional USDA on food safety concerns and audit navigation."
+        },
+        {
+          title: "HACCP QA Coordinator",
+          company: "Food Processing Company",
+          period: "2020 – 2021",
+          details: "Managed facility HACCP plans including raw and RTE programs. Coordinated internal, external, third-party, and BRC compliance audits. Managed microbial samples for e. coli compliance. Handled out-of-specification product disposition. Managed inventory hold and release for raw materials and finished goods. Oversaw third-shift sanitation management per environmental sampling protocols."
+        },
+        {
+          title: "QA Team Lead",
+          company: "Poultry Processing Company",
+          period: "2004 – 2020",
+          details: "Supervised 30 QA technicians across live production, second processing, and deli department for GMP, SOP, and HACCP compliance. Responsible for hiring, training, counseling, and performance appraisals for 31 QA associates. Served as liaison between USDA and company management for 9 CFR compliance. Delivered daily and per-shift quality data reports to management. Monitored sanitation contractor and conducted swab testing and data interpretation."
+        }
+      ],
+      certifications: [
+        "B.S., Chemistry — University, 1994",
+        "HACCP Certified",
+        "CGMP",
+        "SAP, CFS, HAT",
+        "Documentation Review | Internal Audits | Spectrophotometer | HPLC | Wet Chemistry"
+      ]
+    }
+  }
+];
+
+let activeCategory = "All";
+let searchTerm = "";
+let currentInquiryCandidate = null;
+
+function renderFilters() {
+  const cats = ["All", ...new Set(candidates.map(c => c.category))];
+  document.getElementById('filterRow').innerHTML = cats.map(cat =>
+    `<button class="filter-btn ${activeCategory === cat ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
+  ).join('');
+  document.getElementById('totalCount').textContent = candidates.length;
+}
+
+function setCategory(cat) { activeCategory = cat; renderFilters(); renderGrid(); }
+
+function renderGrid() {
+  const f = candidates.filter(c => {
+    const mCat = activeCategory === "All" || c.category === activeCategory;
+    const mS = !searchTerm ||
+      c.role.toLowerCase().includes(searchTerm) ||
+      c.location.toLowerCase().includes(searchTerm) ||
+      c.expertise.some(e => e.toLowerCase().includes(searchTerm)) ||
+      c.bio.toLowerCase().includes(searchTerm);
+    return mCat && mS;
+  });
+
+  document.getElementById('resultCount').textContent =
+    `${f.length} Candidate${f.length !== 1 ? 's' : ''} Available`;
+
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('emptyState');
+
+  if (f.length === 0) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+  grid.style.display = 'grid'; empty.style.display = 'none';
+
+  grid.innerHTML = f.map((c, i) => `
+    <article class="card" onclick="openDrawer(${c.id})" style="animation-delay:${i * 0.06}s">
+      <div class="card-head">
+        <div class="card-info">
+          <span class="cat-pill">${c.category}</span>
+          <div class="card-role">${c.role}</div>
+          <div class="card-loc"><i class="fas fa-map-marker-alt"></i>${c.location}</div>
+        </div>
+      </div>
+
+      <div class="card-stats">
+        <div class="cs">
+          <span class="cs-val">${c.experience}<span style="font-size:12px;font-weight:500;">yr</span></span>
+          <span class="cs-label">Experience</span>
+        </div>
+        <div class="cs">
+          <span class="cs-val">${c.expertise.length}</span>
+          <span class="cs-label">Specialties</span>
+        </div>
+        <div class="cs">
+          <span class="cs-val">${c.highlights.length}</span>
+          <span class="cs-label">Key Wins</span>
+        </div>
+      </div>
+
+      <div class="card-highlight">${c.highlights[0]}</div>
+
+      <div class="card-tags">
+        ${c.expertise.map(e => `<span class="tag">${e}</span>`).join('')}
+      </div>
+
+      <div class="card-foot">
+        <span class="ref-id">${c.refId}</span>
+        <span class="view-link">View Profile <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function openDrawer(id) {
+  const c = candidates.find(x => x.id === id);
+
+  const overviewHTML = `
+    <div class="d-sec">
+      <div class="d-sec-title">Executive Summary</div>
+      <div class="d-bio">"${c.bio}"</div>
+    </div>
+    <div class="d-sec">
+      <div class="d-sec-title">Key Accomplishments</div>
+      ${c.highlights.map(h => `
+        <div class="d-win">
+          <div class="check-circle"><i class="fas fa-check"></i></div>
+          <span class="d-win-text">${h}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="d-sec">
+      <div class="d-sec-title">Core Expertise</div>
+      <div class="d-tags">${c.expertise.map(e => `<span class="d-tag">${e}</span>`).join('')}</div>
+    </div>
+    <div class="d-sec">
+      <div class="d-sec-title">Education</div>
+      <div class="d-edu"><i class="fas fa-graduation-cap"></i>${c.education}</div>
+    </div>
+    <div class="d-cta">
+      <button class="cta-btn" onclick="requestContact('${c.refId}')">
+        <i class="fas fa-calendar-check"></i> Request Interview Details
+      </button>
+      <p class="cta-note"><i class="fas fa-circle-check"></i>We'll respond within one business day.</p>
+    </div>
+  `;
+
+  const fullHTML = c.fullSummary ? buildFullSummary(c) : `
+    <div class="no-summary">
+      <i class="fas fa-file-lines"></i>
+      <p>Full summary not yet available for this candidate.</p>
+    </div>
+  `;
+
+  document.getElementById('drawerBody').innerHTML = `
+    <span class="d-cat">${c.category}</span>
+    <div class="d-role">${c.role}</div>
+    <div class="d-meta">
+      <div class="d-meta-item"><i class="fas fa-map-marker-alt"></i>${c.location}</div>
+      <div class="d-meta-item"><i class="fas fa-briefcase"></i>${c.experienceFull} Experience</div>
+      <div class="d-meta-item"><i class="fas fa-id-badge"></i>Ref: ${c.refId}</div>
+    </div>
+
+    <div class="d-tabs">
+      <button class="d-tab active" onclick="switchTab(this, 'overview-${c.id}')">Overview</button>
+      <button class="d-tab" onclick="switchTab(this, 'full-${c.id}')">
+        Full Summary ${c.fullSummary ? '' : ''}
+      </button>
+    </div>
+
+    <div id="overview-${c.id}" class="d-tab-panel">${overviewHTML}</div>
+    <div id="full-${c.id}" class="d-tab-panel" style="display:none;">${fullHTML}</div>
+  `;
+
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function switchTab(btn, panelId) {
+  const body = document.getElementById('drawerBody');
+  body.querySelectorAll('.d-tab').forEach(t => t.classList.remove('active'));
+  body.querySelectorAll('.d-tab-panel').forEach(p => p.style.display = 'none');
+  btn.classList.add('active');
+  document.getElementById(panelId).style.display = 'block';
+}
+
+function buildFullSummary(c) {
+  const s = c.fullSummary;
+  return `
+    <div class="d-sec">
+      <div class="d-sec-title">Professional Summary</div>
+      <div class="fs-prose">${s.summary.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>
+    </div>
+
+    <div class="d-sec">
+      <div class="d-sec-title">Core Competencies</div>
+      <div class="fs-grid">
+        ${s.competencies.map(comp => `<div class="fs-comp"><i class="fas fa-check"></i>${comp}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="d-sec">
+      <div class="d-sec-title">Awards & Highlights</div>
+      ${s.awards.map(a => `
+        <div class="d-win">
+          <div class="check-circle"><i class="fas fa-star" style="font-size:8px;"></i></div>
+          <span class="d-win-text">${a}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="d-sec">
+      <div class="d-sec-title">Professional Experience</div>
+      ${s.experience.map(exp => `
+        <div class="fs-exp">
+          <div class="fs-exp-head">
+            <div class="fs-exp-title">${exp.title}</div>
+            <div class="fs-exp-period">${exp.period}</div>
+          </div>
+          <div class="fs-exp-company">${exp.company}</div>
+          <div class="fs-exp-detail">${exp.details}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="d-sec">
+      <div class="d-sec-title">Certifications</div>
+      ${s.certifications.map(cert => `
+        <div class="d-win">
+          <div class="check-circle"><i class="fas fa-certificate" style="font-size:8px;"></i></div>
+          <span class="d-win-text">${cert}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="d-cta">
+      <button class="cta-btn" onclick="requestContact('${c.refId}')">
+        <i class="fas fa-calendar-check"></i> Request Interview Details
+      </button>
+      <p class="cta-note"><i class="fas fa-circle-check"></i>We'll respond within one business day.</p>
+    </div>
+  `;
+}
+
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function requestContact(refId) {
+  const c = candidates.find(x => x.refId === refId);
+  currentInquiryCandidate = c;
+  document.getElementById('modalSub').textContent = `${c.role} — ${c.refId}`;
+  document.getElementById('inquiryName').value = '';
+  document.getElementById('inquiryCompany').value = '';
+  document.getElementById('inquiryEmail').value = '';
+  document.getElementById('inquiryMessage').value = '';
+  document.getElementById('formError').textContent = '';
+  document.getElementById('submitBtn').innerHTML = '<i class="fas fa-paper-plane"></i> Send Inquiry';
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modalOverlay').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modalOverlay').style.display = 'none';
+}
+
+function submitInquiry() {
+  const name    = document.getElementById('inquiryName').value.trim();
+  const company = document.getElementById('inquiryCompany').value.trim();
+  const email   = document.getElementById('inquiryEmail').value.trim();
+  const message = document.getElementById('inquiryMessage').value.trim();
+  const errEl   = document.getElementById('formError');
+
+  if (!name || !company || !email) {
+    errEl.textContent = 'Please fill in all required fields.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    return;
+  }
+
+  const c = currentInquiryCandidate;
+  const subject = encodeURIComponent(`Interview Request: ${c.role} (${c.refId})`);
+  const body = encodeURIComponent(
+`Candidate: ${c.role} — ${c.refId} — ${c.location}
+
+From: ${name}
+Company: ${company}
+Email: ${email}
+
+Message: ${message || 'No additional message provided.'}`
+  );
+
+  window.location.href = `mailto:tgodin@gomesgodin.com?subject=${subject}&body=${body}`;
+  closeModal();
+}
+
+function resetFilters() {
+  activeCategory = "All"; searchTerm = "";
+  document.getElementById('searchInput').value = "";
+  renderFilters(); renderGrid();
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  renderGrid();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeDrawer(); closeModal(); }
+});
+
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>
