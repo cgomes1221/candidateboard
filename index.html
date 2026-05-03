@@ -741,7 +741,7 @@ body {
     Gomes<span>Godin</span>
   </a>
   <div class="nav-right">
-    <a class="nav-cta" href="https://gomesgodin.com/">
+    <a class="nav-cta" href="https://cgomes1221.github.io/GomesGodin.com/">
       <i class="fas fa-handshake"></i> Partner With Us
     </a>
   </div>
@@ -1968,14 +1968,34 @@ function renderFilters() {
 
 function setCategory(cat) { activeCategory = cat; renderFilters(); renderGrid(); }
 
+function candidateMatchesSearch(c, term) {
+  if (!term) return true;
+  const words = term.toLowerCase().split(/\s+/).filter(Boolean);
+
+  // Build a single searchable string from all candidate fields
+  const haystack = [
+    c.role,
+    c.bio,
+    c.location,
+    c.education,
+    ...(c.expertise || []),
+    ...(c.highlights || []),
+    // Full summary fields
+    c.fullSummary ? c.fullSummary.summary : '',
+    ...(c.fullSummary ? c.fullSummary.competencies || [] : []),
+    ...(c.fullSummary ? c.fullSummary.awards || [] : []),
+    ...(c.fullSummary ? (c.fullSummary.experience || []).map(e => `${e.title} ${e.company} ${e.details}`) : []),
+    ...(c.fullSummary ? c.fullSummary.certifications || [] : []),
+  ].join(' ').toLowerCase();
+
+  // All words must appear somewhere in the haystack (AND logic)
+  return words.every(word => haystack.includes(word));
+}
+
 function renderGrid() {
   const f = candidates.filter(c => {
     const mCat = activeCategory === "All" || c.category === activeCategory;
-    const mS = !searchTerm ||
-      c.role.toLowerCase().includes(searchTerm) ||
-      c.location.toLowerCase().includes(searchTerm) ||
-      c.expertise.some(e => e.toLowerCase().includes(searchTerm)) ||
-      c.bio.toLowerCase().includes(searchTerm);
+    const mS = candidateMatchesSearch(c, searchTerm);
     return mCat && mS;
   });
 
@@ -2223,7 +2243,7 @@ function resetFilters() {
 }
 
 document.getElementById('searchInput').addEventListener('input', e => {
-  searchTerm = e.target.value.toLowerCase().trim();
+  searchTerm = e.target.value.trim();
   renderGrid();
 });
 
