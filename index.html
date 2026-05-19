@@ -774,9 +774,6 @@ body {
     Gomes<span>Godin</span>
   </a>
   <div class="nav-right">
-    <a class="nav-cta" href="https://cgomes1221.github.io/candidateboard/">
-      <i class="fas fa-handshake"></i> Partner With Us
-    </a>
   </div>
 </nav>
 
@@ -4207,6 +4204,39 @@ document.addEventListener('keydown', e => {
 
 renderFilters();
 renderGrid();
+
+// ── URL parameter filtering ──
+// Supports ?category=Operations&search=plastics
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const cat    = params.get('category');
+  const search = params.get('search');
+
+  if (cat) {
+    // Find the closest matching category (case-insensitive partial match)
+    const categories = ['All', ...new Set(candidates.map(c => c.category))];
+    const match = categories.find(c =>
+      c.toLowerCase().includes(cat.toLowerCase()) ||
+      cat.toLowerCase().includes(c.toLowerCase())
+    );
+    if (match) activeCategory = match;
+  }
+
+  if (search) {
+    searchTerm = search.toLowerCase().trim();
+    const input = document.getElementById('searchInput');
+    if (input) input.value = search;
+  }
+
+  if (cat || search) {
+    renderFilters();
+    renderGrid();
+    // Scroll down to the grid smoothly after a short delay
+    setTimeout(() => {
+      document.getElementById('grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+  }
+})();
 </script>
 </body>
 </html>
