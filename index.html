@@ -391,6 +391,19 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 18px; border-top: 1px solid var(--border);
 }
+.card-foot-left { display: flex; align-items: center; gap: 10px; }
+.copy-link-btn {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700;
+  color: var(--muted); background: var(--bg-section);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 9px; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all var(--transition);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.copy-link-btn:hover { background: var(--green-lt); color: var(--green-dk); border-color: #c6f6d5; }
+.copy-link-btn i { font-size: 9px; }
 .ref-id { font-size: 10px; font-weight: 700; color: #cbd5e1; letter-spacing: 2px; text-transform: uppercase; }
 .view-link {
   display: flex; align-items: center; gap: 6px;
@@ -3926,7 +3939,12 @@ function renderGrid() {
       </div>
 
       <div class="card-foot">
-        <span class="ref-id">${c.refId}</span>
+        <div class="card-foot-left">
+          <span class="ref-id">${c.refId}</span>
+          <button class="copy-link-btn" onclick="event.stopPropagation(); copyLink('${c.refId}')" title="Copy direct link">
+            <i class="fas fa-link"></i> Copy Link
+          </button>
+        </div>
         <span class="view-link">View Profile <i class="fas fa-arrow-right"></i></span>
       </div>
     </article>
@@ -4181,6 +4199,19 @@ ${details || 'None provided'}`
   return true;
 }
 
+function copyLink(refId) {
+  const url = `https://gomesgodintalent.com/?candidate=${refId}`;
+  navigator.clipboard.writeText(url).then(() => {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = `Link copied — ${url}`;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }).catch(() => {
+    // Fallback for browsers that block clipboard
+    prompt('Copy this link:', `https://gomesgodintalent.com/?candidate=${refId}`);
+  });
+}
+
 function resetFilters() {
   activeCategory = "All"; searchTerm = "";
   document.getElementById('searchInput').value = "";
@@ -4209,11 +4240,11 @@ renderGrid();
 // Supports ?category=Operations&search=plastics
 (function() {
   const params = new URLSearchParams(window.location.search);
-  const cat    = params.get('category');
-  const search = params.get('search');
+  const cat      = params.get('category');
+  const search   = params.get('search');
+  const candidateRef = params.get('candidate');
 
   if (cat) {
-    // Find the closest matching category (case-insensitive partial match)
     const categories = ['All', ...new Set(candidates.map(c => c.category))];
     const match = categories.find(c =>
       c.toLowerCase().includes(cat.toLowerCase()) ||
@@ -4231,10 +4262,19 @@ renderGrid();
   if (cat || search) {
     renderFilters();
     renderGrid();
-    // Scroll down to the grid smoothly after a short delay
     setTimeout(() => {
       document.getElementById('grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
+  }
+
+  // Auto-open a specific candidate drawer via ?candidate=C-3301
+  if (candidateRef) {
+    const c = candidates.find(x =>
+      x.refId.toLowerCase() === candidateRef.toLowerCase()
+    );
+    if (c) {
+      setTimeout(() => openDrawer(c.id), 300);
+    }
   }
 })();
 </script>
