@@ -3941,8 +3941,8 @@ function renderGrid() {
       <div class="card-foot">
         <div class="card-foot-left">
           <span class="ref-id">${c.refId}</span>
-          <button class="copy-link-btn" onclick="event.stopPropagation(); copyLink('${c.refId}')" title="Copy direct link">
-            <i class="fas fa-link"></i> Copy Link
+          <button class="copy-link-btn" onclick="event.stopPropagation(); copyLink('${c.refId}')" title="Open direct link">
+            <i class="fas fa-arrow-up-right-from-square"></i> Share Link
           </button>
         </div>
         <span class="view-link">View Profile <i class="fas fa-arrow-right"></i></span>
@@ -4201,15 +4201,7 @@ ${details || 'None provided'}`
 
 function copyLink(refId) {
   const url = `https://gomesgodintalent.com/?candidate=${refId}`;
-  navigator.clipboard.writeText(url).then(() => {
-    const t = document.getElementById('toast');
-    document.getElementById('toastMsg').textContent = `Link copied — ${url}`;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }).catch(() => {
-    // Fallback for browsers that block clipboard
-    prompt('Copy this link:', `https://gomesgodintalent.com/?candidate=${refId}`);
-  });
+  window.open(url, '_blank');
 }
 
 function resetFilters() {
