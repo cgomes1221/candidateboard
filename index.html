@@ -628,6 +628,109 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Industries Dropdown ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown-btn {
+  display: flex; align-items: center; gap: 7px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  font-size: 13px; font-weight: 700;
+  padding: 9px 18px; border-radius: 8px;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all var(--transition);
+}
+.nav-dropdown-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); color: #fff; }
+.nav-dropdown-btn i { font-size: 10px; transition: transform var(--transition); }
+.nav-dropdown.open .nav-dropdown-btn i { transform: rotate(180deg); }
+.nav-dropdown.open .nav-dropdown-btn { background: rgba(255,255,255,0.08); border-color: var(--green); color: #fff; }
+
+.nav-dropdown-menu {
+  display: none; position: absolute;
+  top: calc(100% + 10px); right: 0;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 14px; padding: 8px;
+  min-width: 260px;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.15);
+  z-index: 200; animation: fadeUp 0.15s ease;
+}
+.nav-dropdown.open .nav-dropdown-menu { display: block; }
+.dropdown-section-label {
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 6px 12px 8px;
+}
+.dropdown-item {
+  display: block; padding: 9px 12px;
+  font-size: 13px; font-weight: 500;
+  color: var(--slate); text-decoration: none;
+  border-radius: 8px; transition: all var(--transition);
+}
+.dropdown-item:hover { background: var(--bg-section); color: var(--navy); padding-left: 16px; }
+.dropdown-divider { height: 1px; background: var(--border); margin: 6px 8px; }
+.dropdown-all { color: var(--green-dk); font-weight: 700; }
+.dropdown-all:hover { background: var(--green-lt); }
+.dropdown-count {
+  margin-left: auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 20px;
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 11px; font-weight: 700;
+  color: var(--muted);
+  padding: 0 6px;
+  float: right;
+}
+.dropdown-item { display: flex; align-items: center; }
+.dropdown-count-all {
+  background: var(--green-lt);
+  border-color: #c6f6d5;
+  color: var(--green-dk);
+}
+
+.industry-banner {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2010 100%);
+  padding: 16px 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 2px solid var(--green);
+  position: relative;
+  overflow: hidden;
+}
+.industry-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 0% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.industry-banner-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.6);
+}
+.industry-banner-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green);
+  color: var(--navy);
+  font-size: 14px; font-weight: 800;
+  padding: 6px 16px; border-radius: 100px;
+  letter-spacing: -0.2px;
+}
+.industry-banner-tag i { font-size: 11px; }
+.industry-banner-clear {
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 7px 14px; border-radius: 8px;
+  transition: all var(--transition);
+}
+.industry-banner-clear:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.3);
+}
+
 /* ══════════════════════════════
    RESPONSIVE
 ══════════════════════════════ */
@@ -787,10 +890,42 @@ body {
     Gomes<span>Godin</span>
   </a>
   <div class="nav-right">
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-btn">
+        Industries <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="nav-dropdown-menu">
+        <div class="dropdown-section-label">Browse by Industry</div>
+        <a class="dropdown-item" href="?industry=plastics">Plastics &amp; Polymer Manufacturing <span class="dropdown-count">15</span></a>
+        <a class="dropdown-item" href="?industry=specialty-chemicals">Specialty Chemicals <span class="dropdown-count">8</span></a>
+        <a class="dropdown-item" href="?industry=food-beverage">Food &amp; Beverage <span class="dropdown-count">4</span></a>
+        <a class="dropdown-item" href="?industry=pharmaceutical">Pharmaceutical &amp; Life Sciences <span class="dropdown-count">3</span></a>
+        <a class="dropdown-item" href="?industry=oil-gas">Oil &amp; Gas / Energy <span class="dropdown-count">3</span></a>
+        <a class="dropdown-item" href="?industry=human-resources">Human Resources <span class="dropdown-count">2</span></a>
+        <a class="dropdown-item" href="?industry=ehs">EHS &amp; Safety <span class="dropdown-count">3</span></a>
+        <a class="dropdown-item" href="?industry=technology">Technology &amp; IT <span class="dropdown-count">4</span></a>
+        <a class="dropdown-item" href="?industry=supply-chain">Supply Chain &amp; Operations <span class="dropdown-count">5</span></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item dropdown-all" href="?">View All Candidates <span class="dropdown-count dropdown-count-all">36</span></a>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- Active industry banner (shown when filtering by industry) -->
+<div class="industry-banner" id="industryBanner" style="display:none;">
+  <div class="industry-banner-label">
+    <i class="fas fa-filter" style="font-size:12px;color:var(--green);"></i>
+    Filtering by:
+    <span class="industry-banner-tag">
+      <i class="fas fa-industry"></i>
+      <span id="industryBannerName"></span>
+    </span>
+  </div>
+  <a class="industry-banner-clear" href="?">
+    <i class="fas fa-times" style="font-size:10px;"></i> Clear Filter
+  </a>
+</div>
 <section class="hero">
   <div class="hero-badge">
     <i class="fas fa-bolt"></i>
@@ -978,32 +1113,37 @@ body {
   </div>
   <div class="modal-body">
     <p class="modal-intro">Tell us a bit about yourself and we'll be in touch within one business day.</p>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Your Name <span class="req">*</span></label>
-        <input class="form-input" type="text" id="inquiryName" placeholder="Jane Smith">
+    <form id="inquiryForm" action="https://formspree.io/f/mgorlaqg" method="POST">
+      <input type="hidden" name="_subject" id="f_subject" value="Interview Request">
+      <input type="hidden" name="candidate" id="f_candidate" value="">
+      <input type="hidden" name="_next" value="https://cgomes1221.github.io/candidateboard/?submitted=true">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name <span class="req">*</span></label>
+          <input class="form-input" type="text" name="name" id="inquiryName" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company <span class="req">*</span></label>
+          <input class="form-input" type="text" name="company" id="inquiryCompany" placeholder="Acme Corp" required>
+        </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Company <span class="req">*</span></label>
-        <input class="form-input" type="text" id="inquiryCompany" placeholder="Acme Corp">
+        <label class="form-label">Your Email <span class="req">*</span></label>
+        <input class="form-input" type="email" name="email" id="inquiryEmail" placeholder="jane@acmecorp.com" required>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Your Email <span class="req">*</span></label>
-      <input class="form-input" type="email" id="inquiryEmail" placeholder="jane@acmecorp.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Message <span class="optional">(optional)</span></label>
-      <textarea class="form-input form-textarea" id="inquiryMessage" placeholder="Any specific questions or availability…"></textarea>
-    </div>
-    <div class="form-error" id="formError"></div>
-    <a id="inquiryMailtoLink" href="#" class="cta-btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;" onclick="return buildInquiryEmail()">
-      <i class="fas fa-paper-plane"></i> Send Inquiry
-    </a>
-    <p class="cta-note" style="margin-top:12px;">
-      <i class="fas fa-lock" style="font-size:10px;color:var(--green);"></i>
-      Your info is only shared with Gomes Godin.
-    </p>
+      <div class="form-group">
+        <label class="form-label">Message <span class="optional">(optional)</span></label>
+        <textarea class="form-input form-textarea" name="message" id="inquiryMessage" placeholder="Any specific questions or availability…"></textarea>
+      </div>
+      <div class="form-error" id="formError"></div>
+      <button class="cta-btn" type="submit" id="submitBtn">
+        <i class="fas fa-paper-plane"></i> Send Inquiry
+      </button>
+      <p class="cta-note" style="margin-top:12px;">
+        <i class="fas fa-lock" style="font-size:10px;color:var(--green);"></i>
+        Your info is only shared with Gomes Godin.
+      </p>
+    </form>
   </div>
 </div>
 
@@ -3862,7 +4002,7 @@ function renderFilters() {
   document.getElementById('filterRow').innerHTML = cats.map(cat =>
     `<button class="filter-btn ${activeCategory === cat ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
   ).join('');
-  document.getElementById('totalCount').textContent = candidates.length;
+  // totalCount updated by renderGrid instead
 }
 
 function setCategory(cat) { activeCategory = cat; renderFilters(); renderGrid(); }
@@ -3893,13 +4033,15 @@ function candidateMatchesSearch(c, term) {
 
 function renderGrid() {
   const f = candidates.filter(c => {
-    const mCat = activeCategory === "All" || c.category === activeCategory;
-    const mS = candidateMatchesSearch(c, searchTerm);
-    return mCat && mS;
+    const mCat      = activeCategory === "All" || c.category === activeCategory;
+    const mS        = candidateMatchesSearch(c, searchTerm);
+    const mIndustry = !activeIndustry || (industryMap[activeIndustry] && industryMap[activeIndustry].refs.includes(c.refId));
+    return mCat && mS && mIndustry;
   });
 
   document.getElementById('resultCount').textContent =
     `${f.length} Candidate${f.length !== 1 ? 's' : ''} Available`;
+  document.getElementById('totalCount').textContent = f.length;
 
   const grid = document.getElementById('grid');
   const empty = document.getElementById('emptyState');
@@ -4092,54 +4234,34 @@ function requestContact(refId) {
   const c = candidates.find(x => x.refId === refId);
   currentInquiryCandidate = c;
   document.getElementById('modalSub').textContent = `${c.role} — ${c.refId}`;
+  document.getElementById('f_subject').value = `Interview Request: ${c.role} (${c.refId})`;
+  document.getElementById('f_candidate').value = `${c.role} — ${c.refId} — ${c.location}`;
   document.getElementById('inquiryName').value = '';
   document.getElementById('inquiryCompany').value = '';
   document.getElementById('inquiryEmail').value = '';
   document.getElementById('inquiryMessage').value = '';
   document.getElementById('formError').textContent = '';
-  document.getElementById('submitBtn').innerHTML = '<i class="fas fa-paper-plane"></i> Send Inquiry';
-  document.getElementById('submitBtn').disabled = false;
   document.getElementById('modal').classList.add('open');
   document.getElementById('modalOverlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
   document.getElementById('modalOverlay').style.display = 'none';
+  document.body.style.overflow = '';
 }
 
-function buildInquiryEmail() {
-  const name    = document.getElementById('inquiryName').value.trim();
-  const company = document.getElementById('inquiryCompany').value.trim();
-  const email   = document.getElementById('inquiryEmail').value.trim();
-  const message = document.getElementById('inquiryMessage').value.trim();
-  const errEl   = document.getElementById('formError');
-
-  if (!name || !company || !email) {
-    errEl.textContent = 'Please fill in all required fields.';
-    return false;
-  }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errEl.textContent = 'Please enter a valid email address.';
-    return false;
-  }
-  errEl.textContent = '';
-
-  const c = currentInquiryCandidate;
-  const subject = encodeURIComponent(`Interview Request: ${c.role} (${c.refId})`);
-  const body = encodeURIComponent(
-`Candidate: ${c.role} — ${c.refId} — ${c.location}
-
-From: ${name}
-Company: ${company}
-Email: ${email}
-
-Message: ${message || 'No additional message provided.'}`
-  );
-
-  document.getElementById('inquiryMailtoLink').href =
-    `mailto:tgodin@gomesgodin.com?subject=${subject}&body=${body}`;
-  return true;
+// Show success toast if returning from Formspree submission
+if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
+  window.addEventListener('load', () => {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = "Inquiry sent — we'll be in touch shortly.";
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 5000);
+    // Clean the URL without reloading
+    history.replaceState({}, '', window.location.pathname);
+  });
 }
 
 function openRequestModal() {
@@ -4225,16 +4347,47 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeDrawer(); closeModal(); closeRequestModal(); }
 });
 
+// ── Industry map ──
+const industryMap = {
+  'plastics':           { label: 'Plastics & Polymer Manufacturing', refs: ['C-5517','C-7729','C-8834','C-1364','C-1586','C-1697','C-3142','C-3253','C-3475','C-3586','C-3919','C-4030','C-2697','C-2819','C-3697'] },
+  'specialty-chemicals':{ label: 'Specialty Chemicals',             refs: ['C-3301','C-1364','C-2253','C-2819','C-3142','C-3364','C-3919','C-8834'] },
+  'food-beverage':      { label: 'Food & Beverage',                 refs: ['C-1708','C-1920','C-3031','C-6643'] },
+  'pharmaceutical':     { label: 'Pharmaceutical & Life Sciences',  refs: ['C-1819','C-2586','C-6643'] },
+  'oil-gas':            { label: 'Oil & Gas / Energy',              refs: ['C-9912','C-2364','C-3364'] },
+  'human-resources':    { label: 'Human Resources',                 refs: ['C-1047','C-1138'] },
+  'ehs':                { label: 'EHS & Safety',                    refs: ['C-1253','C-2475','C-1920'] },
+  'technology':         { label: 'Technology & IT',                 refs: ['C-9912','C-2142','C-2364','C-2708'] },
+  'supply-chain':       { label: 'Supply Chain & Operations',       refs: ['C-6643','C-3031','C-2697','C-3253','C-1586'] }
+};
+
+let activeIndustry = null;
+
+// ── Dropdown toggle ──
+const dropdown = document.querySelector('.nav-dropdown');
+document.querySelector('.nav-dropdown-btn').addEventListener('click', e => {
+  e.stopPropagation();
+  dropdown.classList.toggle('open');
+});
+document.addEventListener('click', () => dropdown.classList.remove('open'));
+
 renderFilters();
 renderGrid();
 
 // ── URL parameter filtering ──
-// Supports ?category=Operations&search=plastics
 (function() {
-  const params = new URLSearchParams(window.location.search);
+  const params   = new URLSearchParams(window.location.search);
   const cat      = params.get('category');
   const search   = params.get('search');
+  const industry = params.get('industry');
   const candidateRef = params.get('candidate');
+
+  // Industry filter
+  if (industry && industryMap[industry]) {
+    activeIndustry = industry;
+    const banner = document.getElementById('industryBanner');
+    document.getElementById('industryBannerName').textContent = industryMap[industry].label;
+    banner.style.display = 'flex';
+  }
 
   if (cat) {
     const categories = ['All', ...new Set(candidates.map(c => c.category))];
@@ -4251,22 +4404,23 @@ renderGrid();
     if (input) input.value = search;
   }
 
-  if (cat || search) {
+  if (industry || cat || search) {
     renderFilters();
     renderGrid();
+  }
+
+  // Only scroll for search, not industry filtering
+  if (search) {
     setTimeout(() => {
       document.getElementById('grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
   }
 
-  // Auto-open a specific candidate drawer via ?candidate=C-3301
   if (candidateRef) {
     const c = candidates.find(x =>
       x.refId.toLowerCase() === candidateRef.toLowerCase()
     );
-    if (c) {
-      setTimeout(() => openDrawer(c.id), 300);
-    }
+    if (c) setTimeout(() => openDrawer(c.id), 300);
   }
 })();
 </script>
