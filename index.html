@@ -432,48 +432,82 @@ body {
 .site-footer {
   background: var(--navy);
   border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 40px 5%;
+  padding: 32px 5%;
   display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 20px;
+  gap: 16px; flex-wrap: wrap;
 }
-.foot-brand { display: flex; flex-direction: column; gap: 6px; }
+.foot-brand { display: flex; flex-direction: column; gap: 4px; }
 .foot-logo { font-size: 16px; font-weight: 700; color: #fff; }
 .foot-logo span { color: var(--green); }
 .foot-tagline { font-size: 12px; color: rgba(255,255,255,0.3); }
-.foot-right { display: flex; align-items: center; gap: 20px; }
+.foot-right {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
 .foot-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
-.foot-icons { display: flex; gap: 14px; }
+.foot-icons { display: flex; gap: 12px; align-items: center; }
 .foot-icon {
   color: rgba(255,255,255,0.3); font-size: 16px;
   cursor: pointer; transition: color var(--transition);
 }
 .foot-icon:hover { color: var(--green); }
 
+@media (max-width: 640px) {
+  .site-footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .foot-right { width: 100%; justify-content: space-between; }
+  .foot-copy { display: none; }
+}
+.newsletter-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  background: #0A66C2;
+  color: #fff; text-decoration: none;
+  font-size: 15px; border-radius: 8px;
+  transition: all var(--transition);
+}
+.newsletter-btn:hover { background: #004182; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,102,194,0.35); }
+.referral-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green);
+  color: var(--navy); text-decoration: none;
+  font-size: 13px; font-weight: 700;
+  padding: 9px 18px; border-radius: 8px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.referral-btn:hover { background: var(--green-dk); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+
 /* ══════════════════════════════
-   DRAWER
+   CANDIDATE MODAL (centered)
 ══════════════════════════════ */
 .overlay {
   display: none; position: fixed; inset: 0;
-  background: rgba(15,23,42,0.5);
+  background: rgba(15,23,42,0.6);
   backdrop-filter: blur(4px); z-index: 200;
 }
 .drawer {
-  position: fixed; top: 0; right: 0; bottom: 0;
-  width: 520px; max-width: 100vw;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -46%) scale(0.97);
+  width: 680px; max-width: calc(100vw - 32px);
+  max-height: 88vh;
   background: var(--bg); z-index: 201;
-  transform: translateX(100%);
-  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  border-radius: var(--radius-lg);
   display: flex; flex-direction: column;
-  border-left: 1px solid var(--border);
-  box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  opacity: 0; pointer-events: none;
+  transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-.drawer.open { transform: translateX(0); }
+.drawer.open {
+  opacity: 1; pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
 
 .drawer-top {
-  padding: 18px 24px;
+  padding: 20px 28px;
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  flex-shrink: 0;
+  flex-shrink: 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 .drawer-label {
   font-size: 11px; font-weight: 700; color: var(--muted);
@@ -896,8 +930,8 @@ body {
       </button>
       <div class="nav-dropdown-menu">
         <div class="dropdown-section-label">Browse by Industry</div>
-        <a class="dropdown-item" href="?industry=plastics">Plastics &amp; Polymer Manufacturing <span class="dropdown-count">15</span></a>
-        <a class="dropdown-item" href="?industry=specialty-chemicals">Specialty Chemicals <span class="dropdown-count">8</span></a>
+        <a class="dropdown-item" href="?industry=plastics">Plastics &amp; Polymer Manufacturing <span class="dropdown-count">17</span></a>
+        <a class="dropdown-item" href="?industry=specialty-chemicals">Specialty Chemicals <span class="dropdown-count">9</span></a>
         <a class="dropdown-item" href="?industry=food-beverage">Food &amp; Beverage <span class="dropdown-count">4</span></a>
         <a class="dropdown-item" href="?industry=pharmaceutical">Pharmaceutical &amp; Life Sciences <span class="dropdown-count">3</span></a>
         <a class="dropdown-item" href="?industry=oil-gas">Oil &amp; Gas / Energy <span class="dropdown-count">3</span></a>
@@ -906,7 +940,7 @@ body {
         <a class="dropdown-item" href="?industry=technology">Technology &amp; IT <span class="dropdown-count">4</span></a>
         <a class="dropdown-item" href="?industry=supply-chain">Supply Chain &amp; Operations <span class="dropdown-count">5</span></a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item dropdown-all" href="?">View All Candidates <span class="dropdown-count dropdown-count-all">36</span></a>
+        <a class="dropdown-item dropdown-all" href="?">View All Candidates <span class="dropdown-count dropdown-count-all">40</span></a>
       </div>
     </div>
   </div>
@@ -3990,6 +4024,355 @@ const candidates = [
         "Salesforce CRM | Digital Marketing | SEO/SEA"
       ]
     }
+  },
+  {
+    id: 40, refId: "C-4141",
+    role: "Senior Commercial Leader — Engineered Polymers",
+    category: "Sales & Strategy",
+    location: "Howell, MI",
+    experience: "20+",
+    experienceFull: "20+ Years",
+    initials: "SC",
+    education: "M.S., Polymer Engineering | MBA, Business Management | B.S., Mechanical Engineering",
+    expertise: ["Engineered Polymers & Automotive OEM", "Value-Based Pricing & Margin Expansion", "Metal Replacement & Lightweighting"],
+    highlights: [
+      "Grew market share with a major Automotive OEM from 2% to 25% and another from 10% to 45% — managing 70+ key accounts across OEMs and Tier 1 suppliers globally with 250+ product grades.",
+      "Improved profitability 25% during market volatility through value-based pricing, and increased profitability 30%+ during the global pandemic while managing a 1.2B lb polypropylene portfolio.",
+      "Led metal replacement and lightweighting programs across multiple automotive OEMs using high-performance Nylon and PPFV — achieving 30%+ cost reduction and driving sustainability solution approvals."
+    ],
+    bio: "Multilingual (English, Portuguese, Spanish, German) senior commercial leader with 20+ years in engineered polymers, polypropylene, and specialty materials across global automotive OEMs and Tier 1 suppliers — uniquely combining deep polymer engineering expertise with proven commercial leadership across North America, Brazil, Canada, and Europe.",
+    fullSummary: {
+      summary: "Senior commercial leader driving growth in engineered polymers (EP), polypropylene, compounds, and specialty materials across global automotive OEMs and Tier 1 suppliers. Proven track record in value-based selling, pricing strategy, and margin expansion, with deep expertise in lightweighting, metal replacement, and sustainable material solutions. Strong background in leading cross-functional teams, managing large portfolios, and delivering profitable growth in complex global environments. Multilingual: English (C1), Portuguese (Native), Spanish (Fluent), German (B1).",
+      competencies: [
+        "Key Account Management — OEM & Tier 1 (70+ Accounts, 250+ Grades)",
+        "Engineered Polymers — Nylon PA6/PA66, POM, mPPE, PP Compounds",
+        "Metal Replacement, Lightweighting & Sustainability Solutions",
+        "Value-Based Selling, Pricing Strategy & Margin Expansion",
+        "Contract Negotiation & Long-Term Agreements",
+        "Polypropylene Portfolio Management — 1.2B lbs",
+        "OEM Validation, Material Approvals & Homologation",
+        "Supply Chain & Crisis Management",
+        "Injection Molding & Process Engineering (APQP, PPAP, FMEA)",
+        "Lean Manufacturing & Six Sigma",
+        "Cross-Functional & Global Team Leadership",
+        "Multilingual — English, Portuguese, Spanish & German"
+      ],
+      awards: [
+        "Grew Automotive OEM market share from 2% to 25% and another from 10% to 45%.",
+        "Improved profitability 25% during market volatility through value-based pricing strategies.",
+        "Increased profitability 30%+ during global pandemic on fibers/distribution segment.",
+        "Achieved 30%+ cost reduction through nylon-based material replacement initiatives.",
+        "Grew Automotive OEM volume from 3MM lbs to 20MM lbs in Brazil.",
+        "Led validation of 26 new grades and color programs for a global Automotive OEM.",
+        "Secured OEM approvals for exterior applications, increasing market share by 10%.",
+        "Improved production efficiency 15% through lean manufacturing initiatives."
+      ],
+      experience: [
+        {
+          title: "Commercial / Sales Role — PP&PE",
+          company: "Polymer Distribution Company",
+          period: "2025 – 2026",
+          details: "Managed portfolio growth including resin sourcing strategies and pricing alignment. Led contract negotiations and long-term agreements with supplier cost optimization."
+        },
+        {
+          title: "Senior Commercial Role — Engineered Polymers",
+          company: "Engineered Polymers Company",
+          period: "2022 – 2025",
+          details: "Led key OEM and Tier 1 accounts across North America with full revenue responsibility. Maintained EBITDA and protected margins during a 4% market decline through pricing and mix optimization. Managed team supporting 70+ customers and 250+ product grades. Executed VE/VA projects replacing EP with PPFV and Nylon FV across multiple Automotive OEMs. Completed sustainability solution approval and sales for a new OEM program. Also managed strategic OEM and Tier relationships across the Americas in a regional commercial role, strengthening commercial alignment with global OEM strategies."
+        },
+        {
+          title: "Senior Commercial Role — Polypropylene Portfolio",
+          company: "Polypropylene & Specialty Materials Company",
+          period: "2019 – 2022",
+          details: "Managed 1.2B lb polypropylene portfolio across Automotive, Films, Fibers, and Distribution segments. Increased profitability 30%+ during the global pandemic. Coordinated price adjustments, reconciliation processes, and led customer communication and mitigation strategies during supply crises."
+        },
+        {
+          title: "Senior Account Manager Transportation — Canada",
+          company: "Polypropylene & Specialty Materials Company",
+          period: "2016 – 2019",
+          details: "Managed OEM and Tier molder relationships across Canada, driving growth and retention. Executed account strategies, pricing, and supply coordination. Supported direct and directed sourcing initiatives."
+        },
+        {
+          title: "Marketing Manager Automotive — Brazil",
+          company: "Polypropylene & Specialty Materials Company",
+          period: "2015 – 2016",
+          details: "Developed new business with a major Automotive OEM, growing volume from 3MM lbs to 20MM lbs. Led validation of 26 new grades and color programs. Managed technical teams and supported global account alignment."
+        },
+        {
+          title: "Customer Project Manager / Technical Service Engineer — Brazil",
+          company: "Polypropylene & Specialty Materials Company",
+          period: "2008 – 2015",
+          details: "Secured OEM approvals for exterior applications, increasing market share by 10%. Improved production efficiency 15% through lean manufacturing. Delivered technical support and application development for OEMs and Tier molders across material selection, performance optimization, and homologation."
+        },
+        {
+          title: "Injection Molding & Process Engineering",
+          company: "Automotive Interior Systems / Automotive Components Company",
+          period: "2000 – 2008",
+          details: "Led injection molding process optimization across multiple global automotive programs. Managed new product launches, tooling start-up, and production ramp-up using APQP, PPAP, and FMEA. Implemented Lean and Six Sigma initiatives. Installed and launched new production lines across Europe and Latin America. Trained international teams and standardized injection molding best practices."
+        }
+      ],
+      certifications: [
+        "M.S., Polymer Engineering (2012–2015)",
+        "MBA, Business Management (2010–2011)",
+        "B.S., Mechanical Engineering (2004–2009)",
+        "Plastic Technician — Vocational Training (1994–1997)",
+        "English (C1 Fluent) | Portuguese (Native) | Spanish (Fluent) | German (B1 Intermediate)",
+        "Lean Manufacturing & Six Sigma",
+        "APQP, PPAP & FMEA Certified"
+      ]
+    }
+  },
+  {
+    id: 41, refId: "C-4252",
+    role: "Strategic Finance & FP&A Executive",
+    category: "Sales & Strategy",
+    location: "Weston, FL",
+    experience: "25+",
+    experienceFull: "25+ Years",
+    initials: "FP",
+    education: "B.S., Economics | M.S., Economics (Coursework) | Certified Professional Forecaster",
+    expertise: ["FP&A & Strategic Finance", "Operations Finance & Supply Chain", "Multi-Country & LATAM Leadership"],
+    highlights: [
+      "Served as LATAM CFO for a mobile technology company — leading annual operating planning and rolling forecasts across multi-country operations and building financial models integrating revenue, OpEx, inventory, headcount, and capital planning.",
+      "Improved forecast accuracy from 55% to 90%+ twice across major LATAM operations — managing supply chain finance, S&OP, demand planning, and working capital across businesses with up to $400M in revenue exposure.",
+      "25+ years of FP&A, business transformation, and M&A support across multinational, regional, and entrepreneurial environments — now advising small and mid-market companies as Managing Partner of a strategic finance advisory firm."
+    ],
+    bio: "Bilingual (Spanish native, English professional) senior finance executive with 25+ years connecting financial strategy with operational execution across LATAM and global environments — a Certified Professional Forecaster and FP&A leader known for improving forecast accuracy, working capital, and profitability for CEOs, CFOs, and commercial teams.",
+    fullSummary: {
+      summary: "Senior finance and business executive with 25+ years of experience across multinational, regional, and entrepreneurial environments. Strong background in FP&A, strategic planning, forecasting, operations finance, business transformation, supply chain analytics, and executive decision support. Proven ability to improve financial visibility, forecast accuracy, working capital, profitability, and operational performance across complex multi-country and mid-market organizations. Recognized for connecting financial strategy with operational execution, partnering with CEOs, CFOs, commercial leaders, and operations teams. Bilingual: Spanish (Native), English (Advanced/Professional), Portuguese (Basic Working Proficiency).",
+      competencies: [
+        "Financial Planning & Analysis (FP&A) & Strategic Finance",
+        "Annual Operating Plan / Budgeting & Rolling Forecasts",
+        "Scenario Modeling & Sensitivity Analysis",
+        "Operations Finance & Supply Chain Finance",
+        "S&OP / Demand Planning & Forecast Accuracy Improvement",
+        "Working Capital Optimization",
+        "Multi-Country & LATAM Leadership",
+        "M&A / Due Diligence Support & Valuation Analysis",
+        "ERP Systems — SAP, Oracle, HFM, Hyperion, NetSuite",
+        "KPI Dashboards & Executive Reporting (Power BI, Advanced Excel)",
+        "Board & Executive Business Partnering",
+        "Business Transformation & Process Improvement"
+      ],
+      awards: [
+        "Improved forecast accuracy from ~55% to 90%+ at a major LATAM mobile devices business.",
+        "Improved forecast accuracy to ~90% through S&OP implementation at a $400M technology distribution company.",
+        "Improved forecast accuracy to ~95% in earlier regional role contributing to ~$18M in productivity savings.",
+        "Led LATAM finance operations as CFO across multi-country markets for a mobile technology company.",
+        "Managed finance for multi-country beverage operations with ~$350M annual revenue exposure.",
+        "Supported M&A readiness, valuation analysis, and due diligence preparation across multiple engagements."
+      ],
+      experience: [
+        {
+          title: "Managing Partner — Strategic Finance & FP&A Advisory",
+          company: "Strategic Finance Advisory Firm",
+          period: "2023 – Present",
+          details: "Leads strategic finance and FP&A advisory engagements for small and mid-market businesses. Builds multi-year financial models integrating revenue, OpEx, CapEx, headcount, cash flow, and funding assumptions. Develops investor/lender-ready financial projections. Advises on pricing, margins, working capital, cash flow, and growth strategy. Supports M&A readiness, valuation analysis, and due diligence. Creates executive dashboards and KPI reporting tools."
+        },
+        {
+          title: "LATAM Finance Director / LATAM CFO",
+          company: "Mobile Technology Company",
+          period: "2020 – 2023",
+          details: "Senior finance partner to LATAM leadership across multi-country operations. Led annual operating planning and rolling forecast processes. Built financial models integrating revenue, OpEx, inventory, headcount, and capital planning. Delivered executive-level reporting packages and business insights. Built scenario models for pricing, product mix, inventory allocation, and market investment decisions."
+        },
+        {
+          title: "Managing Partner — Finance & Operations Transformation Advisory",
+          company: "Finance & Operations Consulting Firm",
+          period: "2014 – 2018",
+          details: "Designed financial and operational models to improve business planning and performance management. Implemented demand planning, MRP, S&OP, and forecasting processes for growing companies. Supported ERP implementation, reporting improvement, and process redesign. Identified cost reduction opportunities across procurement, freight, inventory, and working capital."
+        },
+        {
+          title: "Operations Director",
+          company: "Technology Distribution Company — Venezuela",
+          period: "2011 – 2014",
+          details: "Led supply chain, procurement, after-sales, reverse logistics, and service execution for a ~$400M revenue technology distribution business. Improved forecast accuracy to ~90% through S&OP implementation. Reduced transportation and logistics costs through vendor negotiations and process redesign."
+        },
+        {
+          title: "Finance Director — Venezuela & Colombia",
+          company: "Multinational Beverage Company",
+          period: "2010 – 2011",
+          details: "Managed finance for multi-country beverage operations with ~$350M annual revenue exposure. Led financial planning, forecasting, budgeting, strategic decision support, and CapEx analysis. Supported SOX controls, SAP project assessment, and shared service center initiatives."
+        },
+        {
+          title: "Customer Operations Manager",
+          company: "Mobile Devices Company — Venezuela",
+          period: "2007 – 2010",
+          details: "Led customer operations, demand planning, supply chain coordination, and inventory management for a ~$350M LATAM mobile devices business. Improved forecast accuracy from ~55% to over 90%. Implemented direct shipment processes reducing distributor fees and improving cost efficiency."
+        }
+      ],
+      certifications: [
+        "Certified Professional Forecaster — Institute of Business Forecasting & Planning",
+        "B.S., Economics | M.S., Economics (Coursework Completed)",
+        "Advanced Senior Management Program",
+        "Financial Modeling and Forecasting Training",
+        "SAP R/3 | Oracle OPM/GL/HFM | Hyperion | NetSuite | Power BI | Advanced Excel",
+        "Spanish (Native) | English (Advanced/Professional) | Portuguese (Basic Working Proficiency)"
+      ]
+    }
+  },
+  {
+    id: 42, refId: "C-4363",
+    role: "Plant Manager — Injection Molding",
+    category: "Operations",
+    location: "Casa Grande, AZ",
+    experience: "30+",
+    experienceFull: "30+ Years",
+    initials: "PM",
+    education: "Master Molder I & II Certified | Six Sigma Green Belt | GMP | Lean Manufacturing",
+    expertise: ["Injection Molding & Process Engineering", "Plant Operations & P&L", "GMP & Medical Device Manufacturing"],
+    highlights: [
+      "Managed a $36M annual revenue manufacturing operation with 70+ employees across 10 KPI categories — responsible for full P&L understanding, CapEx planning, and weekly/monthly ELT business reviews.",
+      "30+ years of injection molding expertise from process engineering technician through plant manager — Master Molder I & II certified with deep hands-on experience in tool qualification, troubleshooting, DOE, window studies, and cavity pressure monitoring.",
+      "Led all tooling, processing, and production activities for 10 years as Manufacturing Manager — driving cost savings through mold change time reduction, cycle time optimization, scrap reduction, and full PM plan management."
+    ],
+    bio: "Hands-on plant manager and Master Molder with 30+ years progressing from injection molding process engineering through full plant leadership — GMP and Green Belt certified, known for GEMBA-based KPI management, lean manufacturing, and driving world-class output in environmental products and medical device environments.",
+    fullSummary: {
+      summary: "Experienced plant manager with excellent leadership skills, coaching management teams to achieve optimal performance across all departments. Deep technical background in injection molding with Master Molder I & II certification, Six Sigma Green Belt, GMP expertise, and lean manufacturing experience. Experienced with GEMBA and KPI-driven metric tracking systems. Strong P&L understanding with CapEx planning and executive-level reporting experience across a $36M manufacturing operation.",
+      competencies: [
+        "Plant Management & Full P&L Responsibility",
+        "Injection Molding — Process Engineering, Troubleshooting & Optimization",
+        "Master Molder I & II — Tool Qualification, DOE, Window Studies",
+        "GMP & Medical Device / Pharmaceutical Manufacturing",
+        "KPI-Driven Operations — 10 KPI Categories, GEMBA Management",
+        "CapEx Planning & Budget Management",
+        "Lean Manufacturing & Scrap Reduction",
+        "Six Sigma Green Belt",
+        "Workforce Leadership — 70+ Employees, Multi-Shift",
+        "Mold Change Time & Cycle Time Optimization",
+        "E-Dart Cavity Pressure Monitoring & SPC",
+        "Machine, Mold & Auxiliary PM Plan Management"
+      ],
+      awards: [
+        "Managed a $36M annual revenue manufacturing operation with full P&L and KPI accountability.",
+        "Master Molder I & II Certified Technician.",
+        "Six Sigma Green Belt Certified.",
+        "30+ years of progressive injection molding experience from technician to plant manager.",
+        "Performed all new tool qualifications for Technology, Medical, and Pharmaceutical OEM customers.",
+        "Highly trained with E-Dart equipment for cavity pressure monitoring and part sorting."
+      ],
+      experience: [
+        {
+          title: "Plant Manager",
+          company: "Environmental Products Manufacturing Company",
+          period: "2017 – 2025",
+          details: "Managed a $36M annual revenue manufacturing operation with 70+ employees across multiple shifts. Accountable for achieving plant goals across 10 KPI categories. Responsible for P&L understanding, CapEx layout, and labor tracking initiatives. Presented weekly revenue updates and monthly business performance reviews to the executive leadership team."
+        },
+        {
+          title: "Manufacturing Manager",
+          company: "Environmental Products Manufacturing Company",
+          period: "2007 – 2017",
+          details: "Managed all tooling, processing, and production activities. Led cost savings initiatives targeting mold change time reduction, cycle time optimization, and scrap reduction. Managed complete machine, mold, and auxiliary preventive maintenance plan. Facilitated all new tool qualifications, window studies, and DOEs."
+        },
+        {
+          title: "Process Engineering Technician",
+          company: "Medical Device Manufacturing Company",
+          period: "1993 – 2007",
+          details: "Performed all new tool qualifications for Technology, Medical, and Pharmaceutical OEM customers. Highly skilled in injection molding troubleshooting for production runs involving flash, shorting, and dimensional problems. Trained extensively with E-Dart equipment to monitor and sort good/bad parts based on cavity pressure. Completed training in Statistical Process Control I & II, Robotics Maintenance, Principles of Injection Molding Processing, and Problems and Solutions in Injection Molding."
+        }
+      ],
+      certifications: [
+        "Master Molder I & II Certified Technician — Injection Molding Training Company",
+        "Six Sigma Green Belt",
+        "GMP — Good Manufacturing Practices",
+        "Lean Manufacturing",
+        "Statistical Process Control I & II",
+        "Robotics Maintenance",
+        "E-Dart Cavity Pressure Monitoring",
+        "Vocational Training in Basic Electronics"
+      ]
+    }
+  },
+  {
+    id: 43, refId: "C-4474",
+    role: "SVP / Chief Commercial Officer",
+    category: "Sales & Strategy",
+    location: "Dallas/Fort Worth, TX",
+    experience: "25+",
+    experienceFull: "25+ Years",
+    initials: "CC",
+    education: "Ph.D., Inorganic Chemistry / Catalysis / Polymer Chemistry | B.S., Chemistry | 25+ Patents",
+    expertise: ["Specialty Chemicals & Coatings", "Global Commercial Leadership & P&L", "Business Development & M&A"],
+    highlights: [
+      "Drove 50% revenue increase over 4 years as SVP/CCO — securing $25M+ in nuclear pipeline rehabilitation contracts, expanding into Australia and South Korea generating $5M+, and achieving $1.2M in working capital improvements.",
+      "Built a 15-member commercial development team from scratch at a specialty chemicals manufacturer — launching 4 new product platforms, generating $3M+ in incremental revenue, and attracting a PE investor at a double-digit multiple in 2019.",
+      "Ph.D. chemist with 25+ patents who pioneered Additive Manufacturing market entry at the world's largest chemical company (€65B revenue), delivered $50M in procurement savings, and earned the Global Innovation Award for products generating $100M+ in annual sales."
+    ],
+    bio: "High-impact global chemical executive with a Ph.D. in Chemistry and 25+ years driving commercial transformation across specialty chemicals, coatings, catalysts, water treatment, and advanced materials — from Fortune 500 to PE-backed startups, with deep international experience in Europe and Asia and a record of building teams and businesses that attract investment.",
+    fullSummary: {
+      summary: "High-impact, global executive with a long record of achievement in the chemical industry focused on driving growth and building high-performance teams. Experience leading transformative initiatives across emission control and process catalysts, additive manufacturing, water treatment, functional coatings, materials & composites, and specialty chemicals. Strong technical and commercial background with broad international experience in Europe and Asia. Demonstrated record of delivering sustainable growth and innovation for organizations ranging from startups to Fortune 500 companies. Leadership style centered on trust, collaboration, resourcefulness, excellence, and results.",
+      competencies: [
+        "Global Commercial Operations & P&L Leadership",
+        "Specialty Chemicals — Catalysts, Coatings, Water Treatment, Inorganics",
+        "Go-to-Market Strategy & Product Launch",
+        "Business Development & Strategic Partnerships",
+        "M&A Due Diligence, Deal Structuring & Venture Capital",
+        "Global Procurement — Inorganic Materials, Rare Earth, $500M+ Spend",
+        "Private Equity Positioning & Investor Readiness",
+        "Cross-Functional Team Building — Up to 15-Member Commercial Teams",
+        "International Markets — Europe, Asia, Australia, Americas",
+        "R&D Commercialization & Patent Development (25+ Patents)",
+        "Additive Manufacturing (3D Printing) Market Entry",
+        "Business Turnaround & Change Management"
+      ],
+      awards: [
+        "Drove 50% revenue increase over 4 years as SVP/CCO.",
+        "Secured $25M+ in nuclear pipeline rehabilitation contracts across the US and Canada.",
+        "Expanded into Australia and South Korea generating $5M+ in incremental revenue.",
+        "Attracted a PE investor at a double-digit multiple in 2019 through commercial development strategy.",
+        "Generated $3M+ in incremental product revenue within 2 years from 4 new product platforms.",
+        "Delivered $50M in procurement savings on $500M+ inorganic materials spend.",
+        "Pioneered Additive Manufacturing market entry — $3M+ in first-year sales (2012).",
+        "Global Innovation Award recipient for aqueous acrylic binder products generating $100M+ in annual sales.",
+        "25+ technical patents and publications.",
+        "Initiated entry into mining industry generating $4M+ in annual product sales."
+      ],
+      experience: [
+        {
+          title: "SVP / Chief Commercial Officer",
+          company: "Specialty Coatings & Lining Materials Company",
+          period: "2021 – Present",
+          details: "Reports to President & CEO with responsibility for global commercial operations, business strategy, P&L, customer relationships, and product innovation. Created and executed 2022–2025 operating plans driving a 50% revenue increase. Led go-to-market strategies for structural polymeric linings contributing $6M in annual revenue growth. Secured $25M+ in nuclear pipeline rehabilitation contracts. Expanded distributor markets in Australia and South Korea generating $5M+. Improved working capital by $1.2M. Launched new fulfillment center model reducing cost of complexity, quality control, and overhead by 70%. Restructured overhead and outsourced robotics production capturing $3M in additional synergies."
+        },
+        {
+          title: "VP, Commercial Development",
+          company: "Specialty Chemicals Manufacturer",
+          period: "2017 – 2021",
+          details: "Built and led a 15-member commercial development team from the ground up. Developed commercial strategy that attracted a PE investor at a double-digit multiple in 2019. Launched 4 new product platforms in remediation, water treatment, and emission control — generating $3M+ in incremental revenue within the second year. Established the company as a trusted development partner to the emissions catalyst industry, delivering 20% revenue increase and 32% EBIT improvement. Initiated entry into the mining industry generating $4M+ in annual product sales after 2021."
+        },
+        {
+          title: "Global Procurement Leadership",
+          company: "Global Chemical Company (€65B Revenue)",
+          period: "2014 – 2017",
+          details: "Managed North American Procurement Team for Inorganic Materials & Chemicals and a Global Team for Rare Earth materials. Delivered $50M in procurement savings on $500M+ combined spend. Led contracting and negotiating in China and Europe. Directed global supplier selection, negotiation, and supply security. Served on Global Leadership Team for Mobile Emission Catalyst Business."
+        },
+        {
+          title: "Business Development / Venture Capital",
+          company: "Global Chemical Company",
+          period: "2009 – 2014",
+          details: "Initiated and directed Additive Manufacturing (3D Printing) market entry — generating $3M+ in first-year sales of photocurable resins and thermoplastic powders. Structured and closed M&A activity for partial ownership of a Wound Care Company, now valued at a double-digit multiple. Developed bio-based succinic acid growth strategy propelling revenue growth to 27%. Leveraged professional networks to source exclusive early and growth-stage investment opportunities."
+        },
+        {
+          title: "Senior Researcher / Commercial Role",
+          company: "Global Chemical Company",
+          period: "2006 – 2009",
+          details: "Designed high-performance aqueous acrylic latex binders at low VOC (0 and 50g/L) for architectural coatings. Products found in major DIY paint brands — generating $100M+ in annual sales impact between 2009 and present. Achieved 20% gross margin improvement. Recognized with the Global Innovation Award. 2 patents granted."
+        },
+        {
+          title: "Research & Development",
+          company: "Global Chemical Company",
+          period: "2003 – 2006",
+          details: "Developed next-generation APEO-free styrene acrylic binders for flooring adhesives and pure acrylic binders for sealants — generating €10M+ combined annual revenue from 2007–2017. 3 patents granted. Initiated company participation in the Blu-Ray Disc Association, driving €5M in annual revenue growth across global SBUs."
+        }
+      ],
+      certifications: [
+        "Ph.D., Inorganic Chemistry / Catalysis / Polymer Chemistry",
+        "B.S., Chemistry",
+        "25+ Technical Patents and Publications",
+        "German — Intermediate",
+        "New York Academy of Sciences | MIT Enterprise Forum NYC",
+        "Society of Plastic Engineers | Phi Lambda Upsilon Chemical Honor Society"
+      ]
+    }
   }
 ];
 
@@ -4095,7 +4478,6 @@ function renderGrid() {
 
 function openDrawer(id) {
   const c = candidates.find(x => x.id === id);
-
   const overviewHTML = `
     <div class="d-sec">
       <div class="d-sec-title">Executive Summary</div>
@@ -4349,8 +4731,8 @@ document.addEventListener('keydown', e => {
 
 // ── Industry map ──
 const industryMap = {
-  'plastics':           { label: 'Plastics & Polymer Manufacturing', refs: ['C-5517','C-7729','C-8834','C-1364','C-1586','C-1697','C-3142','C-3253','C-3475','C-3586','C-3919','C-4030','C-2697','C-2819','C-3697'] },
-  'specialty-chemicals':{ label: 'Specialty Chemicals',             refs: ['C-3301','C-1364','C-2253','C-2819','C-3142','C-3364','C-3919','C-8834'] },
+  'plastics':           { label: 'Plastics & Polymer Manufacturing', refs: ['C-5517','C-7729','C-8834','C-1364','C-1586','C-1697','C-3142','C-3253','C-3475','C-3586','C-3919','C-4030','C-2697','C-2819','C-3697','C-4141','C-4363'] },
+  'specialty-chemicals':{ label: 'Specialty Chemicals',             refs: ['C-3301','C-1364','C-2253','C-2819','C-3142','C-3364','C-3919','C-8834','C-4474'] },
   'food-beverage':      { label: 'Food & Beverage',                 refs: ['C-1708','C-1920','C-3031','C-6643'] },
   'pharmaceutical':     { label: 'Pharmaceutical & Life Sciences',  refs: ['C-1819','C-2586','C-6643'] },
   'oil-gas':            { label: 'Oil & Gas / Energy',              refs: ['C-9912','C-2364','C-3364'] },
